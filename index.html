@@ -59,7 +59,11 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .cat-count{margin-left:auto;font-size:9px;color:var(--text3)}
 
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px}
-.stat-box{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:7px 8px;text-align:center}
+.stat-box{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:7px 8px;text-align:center;cursor:pointer;transition:all .15s}
+.stat-box:hover{background:var(--bg4);border-color:var(--border2);transform:translateY(-1px)}
+.stat-box.active{background:var(--blue-bg);border-color:var(--blue-dim)}
+.stat-box.active .stat-num{color:var(--blue)}
+.stat-box.active .stat-label{color:var(--blue)}
 .stat-num{font-size:18px;font-weight:700;color:var(--blue);font-family:'Segoe UI',system-ui,sans-serif}
 .stat-label{font-size:8px;color:var(--text3);margin-top:1px;letter-spacing:.06em;text-transform:uppercase}
 
@@ -182,6 +186,34 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .empty-ico{font-size:32px;margin-bottom:10px}
 .empty-msg{font-size:11px;line-height:1.7}
 .empty-msg::before{content:'> ';color:var(--blue)}
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  .layout{grid-template-columns:1fr;grid-template-rows:auto 1fr auto;height:100vh}
+  .sidebar{display:none;position:fixed;inset:0;z-index:100;width:280px;height:100vh}
+  .sidebar.open{display:flex}
+  .ai-panel{display:none;position:fixed;inset:0;z-index:100;width:100vw}
+  .ai-panel.open{display:flex}
+  .topbar{flex-wrap:wrap;gap:4px;padding:8px}
+  .mode-toggle{order:2;width:100%}
+  .mode-btn{flex:1;font-size:10px;padding:5px 4px}
+  .search-wrap{order:3;width:100%}
+  .btn{font-size:10px;padding:5px 8px}
+  .btn-tccc{display:none}
+  .mobile-menu-btn{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--border);border-radius:4px;background:var(--bg3);color:var(--text2);cursor:pointer;font-size:16px;flex-shrink:0}
+  .mobile-ai-btn{display:flex;align-items:center;justify-content:center;padding:5px 10px;border:1px solid var(--blue-dim);border-radius:4px;background:var(--blue-bg);color:var(--blue);cursor:pointer;font-size:11px;flex-shrink:0}
+  .mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99}
+  .mobile-overlay.open{display:block}
+  .mobile-close{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:none;background:transparent;color:var(--text2);cursor:pointer;font-size:18px;margin-left:auto}
+  .sidebar-header{display:flex;align-items:center}
+  .results{padding:10px}
+  .card{padding:10px}
+  .card-name{font-size:13px}
+  .ai-header{padding:8px 12px}
+  .ai-body{padding:12px}
+}
+@media (min-width: 769px) {
+  .mobile-menu-btn,.mobile-ai-btn,.mobile-overlay,.mobile-close{display:none!important}
+}
 </style>
 </head>
 <body>
@@ -196,6 +228,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
         <div class="app-title">Tactical Drug Intel</div>
         <div class="app-sub">Role 1/2 · SOF · CCATT</div>
       </div>
+      <button class="mobile-close" onclick="toggleSidebar()">✕</button>
     </div>
   </div>
   <div class="sidebar-body">
@@ -221,6 +254,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 <!-- ── MAIN ── -->
 <div class="main">
   <div class="topbar">
+    <div class="mobile-menu-btn" onclick="toggleSidebar()">☰</div>
     <div class="mode-toggle">
       <button class="mode-btn active" id="modeDrug" onclick="setMode('drug')">Drug</button>
       <button class="mode-btn" id="modeSx" onclick="setMode('symptom')">Situation</button>
@@ -232,10 +266,13 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     </div>
     <button class="btn" onclick="doSearch()">Search</button>
     <button class="btn btn-ai" onclick="askAI()">AI ↗</button>
-    
+    <div class="mobile-ai-btn" onclick="toggleAIPanel()">AI ↗</div>
   </div>
   <div class="results" id="results"></div>
 </div>
+
+<!-- Mobile overlay -->
+<div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileAll()"></div>
 
 <!-- ── AI PANEL ── -->
 <div class="ai-panel">
@@ -245,6 +282,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
       <button onclick="testAI()" style="font-size:9px;padding:3px 8px;border:1px solid var(--border2);border-radius:3px;background:var(--bg4);color:var(--text2);cursor:pointer;">TEST</button>
       <div class="ai-status" id="aiStatus">STANDBY</div>
       <div class="ai-dot" id="aiDot"></div>
+      <button class="mobile-close" onclick="toggleAIPanel()">✕</button>
     </div>
   </div>
   <div class="ai-body" id="aiBody">
@@ -1001,6 +1039,493 @@ const DB = [
   ev_overall:'strong'
 },
 
+// ════════════════════════════════════
+// JTS CPG EXPANSION
+// ════════════════════════════════════
+{
+  id:'apap', name:'Acetaminophen (IV / PO)', icon:'💊', cat:'analgesia',
+  levels:['r12','sof','ccatt'],
+  drug_class:'Non-opioid analgesic / Antipyretic / Central COX inhibitor',
+  primary_use:'Mild-moderate pain; fever; JTS multimodal analgesia backbone',
+  mechanism:'Central COX-3 inhibition → reduces prostaglandin E2 in CNS → analgesia and antipyresis; does NOT inhibit peripheral COX-1/COX-2 → no GI toxicity, no platelet inhibition, no renal vasoconstriction; IV achieves higher CNS concentrations faster than PO',
+  level_context:{
+    r12:'JTS Pain CPG Step 1: acetaminophen 1g PO q6h as analgesia backbone. Reduces opioid requirement 20-30%. Safe in TBI and hemorrhagic shock — no platelet effect. PO tablets in every aid bag.',
+    sof:'IV or PO. Part of opioid-free analgesic triad: acetaminophen + ketorolac + ketamine. Sustained pain management in PFC.',
+    ccatt:'IV 1g q6h standard during CASEVAC. Cornerstone of opioid-sparing protocol. Monitor LFTs if >3g/day or prolonged use.'
+  },
+  dual_uses:[
+    {use:'JTS analgesic triad — opioid-free moderate pain',note:'Acetaminophen + ketorolac + ketamine = complete multimodal protocol. Each covers different mechanism. Can eliminate opioids entirely for moderate pain.',ev:'strong',levels:['r12','sof','ccatt']},
+    {use:'TBI fever control — neuroprotection',note:'Hyperthermia worsens secondary brain injury. Acetaminophen preferred antipyretic in TBI — no platelet inhibition, no hemodynamic effect.',ev:'strong',levels:['r12','sof','ccatt']},
+    {use:'Sepsis fever management',note:'Reduces metabolic demand from fever; preferred over NSAIDs in sepsis due to absence of renal and platelet effects.',ev:'strong',levels:['ccatt']},
+    {use:'Post-op opioid reduction 30-40%',note:'IV acetaminophen 1g pre-incision reduces post-op opioid consumption significantly; effective for abdominal and orthopedic surgery.',ev:'strong',levels:['sof','ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Ketorolac IM/IV',note:'Comparable analgesic efficacy; 30 mg IM/IV',caveat:'Platelet inhibition — avoid in hemorrhagic casualties'},
+    {name:'Ibuprofen PO',note:'400-600 mg PO q6h; similar efficacy',caveat:'GI risk; platelet inhibition; avoid in dehydration/AKI'},
+  ],
+  tags:['multimodal analgesia','opioid-sparing','antipyretic','TBI fever','JTS CPG','no platelet effect'],
+  tag_colors:['yellow','green','teal','blue','orange','green'],
+  warnings:'Hepatotoxicity at >4g/day or >3g/day in alcohol users. Check all acetaminophen sources to avoid inadvertent overdose.',
+  notes:'JTS Pain CPG "analgesic triad": acetaminophen 1g q6h + ketorolac 15-30mg q6h (max 5 days) + ketamine 0.1-0.3 mg/kg/hr = opioid-free protocol for moderate pain.',
+  ev_overall:'strong'
+},
+
+{
+  id:'ketorolac', name:'Ketorolac (Toradol)', icon:'💊', cat:'analgesia',
+  levels:['r12','sof','ccatt'],
+  drug_class:'NSAID / Non-selective COX-1/COX-2 inhibitor',
+  primary_use:'Moderate-severe acute pain; opioid-sparing; JTS CPG multimodal analgesia',
+  mechanism:'Inhibits COX-1 and COX-2 → reduces prostaglandin and thromboxane synthesis → analgesia + anti-inflammatory; ureteral smooth muscle relaxation; inhibits platelet thromboxane A2 → antiplatelet effect',
+  level_context:{
+    r12:'JTS CPG: 15-30 mg IM for moderate pain. CAUTION: do NOT use in suspected internal hemorrhage or hemorrhagic shock. Safe for isolated extremity injuries after hemorrhage controlled.',
+    sof:'Part of multimodal analgesia triad with acetaminophen + ketamine. 30 mg IM/IV; limit to 5 days. Useful for musculoskeletal injuries, dental pain, renal colic.',
+    ccatt:'IV 15-30 mg q6h; monitor renal function during CASEVAC. Stop if creatinine rising.'
+  },
+  dual_uses:[
+    {use:'Renal colic — ureteral smooth muscle relaxation',note:'Prostaglandin inhibition reduces ureteral tone; comparable to opioid analgesia for ureteric colic; 30 mg IV/IM. Mission-critical for deployed urologic emergencies.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Migraine — emergency abortive therapy',note:'IV ketorolac 30 mg as effective as opioids for migraine in emergency settings.',ev:'strong',levels:['ccatt']},
+    {use:'Post-op opioid reduction 25-50%',note:'Perioperative ketorolac significantly reduces opioid consumption; effective for orthopedic and abdominal procedures.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Pericarditis — anti-inflammatory',note:'NSAID backbone of pericarditis treatment; reduces pericardial inflammation.',ev:'strong',levels:['ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Acetaminophen IV/PO',note:'Comparable analgesia without platelet inhibition',caveat:'No anti-inflammatory effect'},
+    {name:'Meloxicam PO',note:'15 mg daily; less platelet inhibition',caveat:'PO only; slower onset'},
+  ],
+  tags:['NSAID','opioid-sparing','renal colic','JTS CPG','platelet inhibition','anti-inflammatory'],
+  tag_colors:['orange','green','teal','orange','red','teal'],
+  warnings:'MAXIMUM 5 DAYS. CONTRAINDICATED in hemorrhagic casualties, suspected internal bleeding, dehydration, AKI. Platelet inhibition lasts 24-48h after stopping.',
+  notes:'JTS CAUTION: contraindicated in penetrating torso trauma until hemorrhage definitively controlled. Safe for isolated extremity injuries after hemostasis achieved.',
+  ev_overall:'strong'
+},
+
+{
+  id:'meloxicam', name:'Meloxicam (Mobic)', icon:'💊', cat:'analgesia',
+  levels:['r12','sof'],
+  drug_class:'Preferential COX-2 inhibitor / NSAID',
+  primary_use:'Mild-moderate musculoskeletal pain; JTS CPG Step 1 analgesia',
+  mechanism:'Preferential COX-2 inhibition (10:1 COX-2:COX-1 selectivity) → reduced prostaglandin synthesis; less COX-1 inhibition = less GI toxicity and less platelet inhibition than non-selective NSAIDs; long half-life (20h) → once daily dosing',
+  level_context:{
+    r12:'JTS Pain CPG Step 1 mild pain: meloxicam 15 mg PO daily. Preferred PO NSAID for combat casualties — once daily dosing, less platelet effect than ibuprofen. Soldier self-carry item.',
+    sof:'PFC mild-moderate musculoskeletal pain management. Combine with acetaminophen for additive effect without increasing platelet risk.'
+  },
+  dual_uses:[
+    {use:'JTS Step 1 analgesia — mild combat pain',note:'JTS Pain CPG first-line for mild pain: meloxicam 15 mg PO daily. Preferred over ibuprofen due to once-daily dosing and reduced platelet inhibition.',ev:'strong',levels:['r12','sof']},
+    {use:'Musculoskeletal injury management',note:'Sprains, strains, fractures — anti-inflammatory + analgesic; allows mission continuation for mild injuries.',ev:'strong',levels:['r12','sof']},
+    {use:'Chronic pain management in prolonged field care',note:'Once-daily dosing simplifies PFC pain protocol; less GI risk with longer use than non-selective NSAIDs.',ev:'moderate',levels:['sof']},
+  ],
+  shortage_alternatives:[
+    {name:'Ibuprofen PO',note:'400-600 mg TID-QID; same class but TID-QID dosing and more platelet inhibition',caveat:'More frequent dosing; more platelet effect'},
+    {name:'Acetaminophen PO',note:'1g q6h; different mechanism; no anti-inflammatory effect',caveat:'No COX inhibition; less effective for inflammatory pain'},
+  ],
+  tags:['COX-2 preferential','JTS CPG Step 1','musculoskeletal','once daily','mild pain'],
+  tag_colors:['teal','orange','blue','green','yellow'],
+  warnings:'Still has some platelet inhibition — avoid in active hemorrhage. GI risk less than ibuprofen but not zero. Renal vasoconstriction possible in dehydration.',
+  notes:'JTS Pain CPG preferred PO NSAID for combat setting: meloxicam 15 mg daily is simpler than ibuprofen TID and has less platelet effect.',
+  ev_overall:'strong'
+},
+
+{
+  id:'ondansetron', name:'Ondansetron (Zofran)', icon:'💊', cat:'analgesia',
+  levels:['r12','sof','ccatt'],
+  drug_class:'Selective 5-HT3 receptor antagonist / Antiemetic',
+  primary_use:'Nausea and vomiting; opioid-induced nausea; post-op nausea',
+  mechanism:'Selective 5-HT3 antagonism in GI tract and CNS → blocks vagal afferent stimulation of vomiting center; no dopamine antagonism → no extrapyramidal side effects; no sedation; safe in TBI',
+  level_context:{
+    r12:'JTS CPG: ondansetron 4 mg ODT (orally disintegrating tablet) or IV/IM for nausea. Dissolves under tongue — no water needed. Critical for opioid-induced nausea in casualties.',
+    sof:'ODT form ideal for tactical use. IV/IM for severe nausea. Antiemetic for CASEVAC motion sickness and opioid nausea.',
+    ccatt:'IV 4-8 mg q6-8h. Standard antiemetic during transport. Combine with dexamethasone for PONV prevention.'
+  },
+  dual_uses:[
+    {use:'Opioid-induced nausea — enables opioid analgesia compliance',note:'Uncontrolled nausea leads to opioid refusal in conscious casualties; ondansetron enables therapeutic opioid use.',ev:'strong',levels:['r12','sof','ccatt']},
+    {use:'CASEVAC motion sickness',note:'5-HT3 antagonism reduces vestibular-triggered nausea during helicopter/aircraft transport.',ev:'moderate',levels:['r12','sof','ccatt']},
+    {use:'Chemotherapy/radiation nausea',note:'Original indication; highly effective for emetogenic therapy.',ev:'strong',levels:['ccatt']},
+    {use:'Itch (pruritus) from opioids — adjunct',note:'5-HT3 antagonism reduces opioid-induced pruritus; alternative to low-dose naloxone.',ev:'moderate',levels:['sof','ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Promethazine (Phenergan)',note:'D2 + H1 + muscarinic antagonist; highly effective antiemetic',caveat:'Sedation; extrapyramidal effects; avoid in TBI'},
+    {name:'Metoclopramide',note:'D2 antagonist + prokinetic; IV/IM antiemetic',caveat:'Extrapyramidal side effects; less preferred in tactical settings'},
+  ],
+  tags:['antiemetic','opioid nausea','CASEVAC','5-HT3','ODT','JTS CPG'],
+  tag_colors:['teal','red','orange','purple','green','orange'],
+  warnings:'QT prolongation at high doses — avoid with other QT-prolonging drugs. Serotonin syndrome risk with concurrent serotonergic drugs (rare at standard doses). ODT dissolves in 30 seconds sublingually.',
+  notes:'ODT (orally disintegrating tablet) form is tactically ideal — no water, works even in vomiting patient. Standard in JTS pain management CPG as antiemetic adjunct.',
+  ev_overall:'strong'
+},
+
+{
+  id:'hydroxocobalamin', name:'Hydroxocobalamin (Cyanokit)', icon:'🔴', cat:'antidote',
+  levels:['sof','ccatt'],
+  drug_class:'Vitamin B12 analogue / Cyanide antidote / Nitric oxide scavenger',
+  primary_use:'Cyanide poisoning antidote; smoke inhalation CN toxicity; CBRN',
+  mechanism:'Hydroxocobalamin binds CN⁻ with extremely high affinity (higher than cytochrome c oxidase) → forms cyanocobalamin (Vitamin B12) → renally excreted; also scavenges nitric oxide → vasopressor-like effect; methemoglobin-independent mechanism — safe in CO co-poisoning (unlike nitrite-based antidotes)',
+  level_context:{
+    sof:'CBRN CN antidote. 5g IV over 15 min. Smoke inhalation in structure fires, industrial CN exposure, mass casualty chemical events. Safe with concurrent CO poisoning — critical advantage over sodium nitrite.',
+    ccatt:'Full CN toxidrome management. 5g IV bolus; repeat 5g if inadequate response. Can give 15g total. Superior to sodium thiosulfate alone for acute severe CN poisoning.'
+  },
+  dual_uses:[
+    {use:'Smoke inhalation — CN + CO combined poisoning',note:'Structure fires produce both HCN and CO. Hydroxocobalamin is the ONLY CN antidote safe with concurrent CO poisoning — nitrites form methemoglobin which worsens CO toxicity. Critical for fire casualty CBRN management.',ev:'strong',levels:['sof','ccatt']},
+    {use:'CBRN mass casualty CN exposure',note:'Weaponized hydrogen cyanide (AC) or cyanogen chloride (CK) exposure. 5g IV rapidly reverses CN-induced cellular hypoxia.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Vasopressor effect — refractory distributive shock (research)',note:'Nitric oxide scavenging → vasoconstriction; studied as adjunct vasopressor in refractory vasodilatory shock unresponsive to catecholamines.',ev:'emerging',levels:['ccatt']},
+    {use:'Unexplained lactic acidosis — empiric CN antidote',note:'In smoke inhalation or industrial exposure with unexplained lactic acidosis and hemodynamic instability, empiric hydroxocobalamin is justified even without confirmed CN level.',ev:'strong',levels:['sof','ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Sodium Thiosulfate',note:'Converts CN to thiocyanate; slower onset; use as adjunct',caveat:'Slower than hydroxocobalamin; does NOT have vasopressor effect'},
+    {name:'Sodium Nitrite + Sodium Thiosulfate (Nithiodote)',note:'Classic antidote kit; effective but nitrite contraindicated with CO poisoning',caveat:'CONTRAINDICATED in CO co-poisoning — causes methemoglobinemia worsening O2 delivery'},
+  ],
+  tags:['cyanide antidote','CBRN','smoke inhalation','CN toxicity','NO scavenger','vasopressor (research)'],
+  tag_colors:['red','red','orange','red','purple','orange'],
+  warnings:'Turns skin/urine RED for 2-5 days — warn patient and staff. Incompatible with sodium thiosulfate in same IV line. Do NOT delay for CN blood levels — treat empirically in smoke inhalation.',
+  notes:'KEY ADVANTAGE over nitrite antidotes: safe with CO co-poisoning. Structure fires always produce both CN and CO. Hydroxocobalamin is the correct choice when CO exposure suspected.',
+  ev_overall:'strong'
+},
+
+{
+  id:'moxifloxacin', name:'Moxifloxacin (Avelox)', icon:'🔬', cat:'abx',
+  levels:['r12','sof'],
+  drug_class:'4th generation fluoroquinolone / DNA gyrase + topoisomerase IV inhibitor',
+  primary_use:'JTS CPG battlefield wound prophylaxis; penetrating abdominal trauma; community-acquired pneumonia',
+  mechanism:'Dual inhibition of DNA gyrase and topoisomerase IV → broader gram-positive coverage than ciprofloxacin; anaerobic coverage (unlike ciprofloxacin); excellent oral bioavailability (~90%); tissue penetration; no renal dose adjustment',
+  level_context:{
+    r12:'JTS CPG wound care: moxifloxacin 400 mg PO for penetrating abdominal trauma when IV antibiotics unavailable. Single daily dose. Better anaerobic coverage than ciprofloxacin for abdominal wounds.',
+    sof:'Penetrating abdominal and thoracic trauma antibiotic. PFC antibiotic for wounds when IV access difficult. Single daily dose simplifies PFC protocols.'
+  },
+  dual_uses:[
+    {use:'Penetrating abdominal trauma prophylaxis — JTS CPG',note:'JTS Wound Care CPG: moxifloxacin 400 mg PO for penetrating abdominal trauma. Anaerobic + gram-negative coverage without IV access requirement.',ev:'strong',levels:['r12','sof']},
+    {use:'Pneumonia — community-acquired and aspiration',note:'Covers typical, atypical, AND anaerobic organisms; single agent for CAP and aspiration pneumonia.',ev:'strong',levels:['sof']},
+    {use:'Skin and soft tissue infections',note:'Broad spectrum including MRSA (variable); penetrating wound infections.',ev:'moderate',levels:['r12','sof']},
+    {use:'Intraabdominal infections — PO step-down',note:'Anaerobic + gram-negative coverage enables earlier PO step-down from IV antibiotics in abdominal infections.',ev:'moderate',levels:['sof']},
+  ],
+  shortage_alternatives:[
+    {name:'Ciprofloxacin + Metronidazole',note:'Covers gram-negatives (cipro) + anaerobes (metro); two-drug combination',caveat:'Two drugs vs one; metronidazole needed for anaerobic coverage'},
+    {name:'Ertapenem IM',note:'Single daily IM injection; broad spectrum including anaerobes',caveat:'Requires IM injection; more expensive'},
+  ],
+  tags:['JTS CPG','wound prophylaxis','abdominal trauma','anaerobic coverage','once daily','fluoroquinolone'],
+  tag_colors:['orange','teal','red','green','green','green'],
+  warnings:'QT prolongation — avoid with amiodarone. No activity against Pseudomonas. Tendon rupture risk (class effect with fluoroquinolones). Avoid in pregnancy.',
+  notes:'JTS advantage over ciprofloxacin: anaerobic coverage. Single daily dose = huge tactical advantage in PFC. No renal dose adjustment needed.',
+  ev_overall:'strong'
+},
+
+{
+  id:'ertapenem', name:'Ertapenem (Invanz)', icon:'🔬', cat:'abx',
+  levels:['sof','ccatt'],
+  drug_class:'Carbapenem / Beta-lactam / Broad-spectrum bactericidal',
+  primary_use:'Penetrating abdominal trauma; intraabdominal infections; PFC broad-spectrum coverage',
+  mechanism:'Inhibits cell wall synthesis by binding penicillin-binding proteins (PBPs) → bactericidal; ultra-broad spectrum covering gram-positive, gram-negative, AND anaerobes; stable against most beta-lactamases; once-daily IM dosing — unique among carbapenems',
+  level_context:{
+    sof:'JTS CPG: ertapenem 1g IM daily for penetrating abdominal trauma in PFC when IV access unavailable. Single IM injection provides 24h broad-spectrum coverage. Game-changer for austere surgery.',
+    ccatt:'IV 1g daily for intraabdominal infections, polymicrobial sepsis, complicated UTI. Step-down from imipenem/meropenem when Pseudomonas not suspected.'
+  },
+  dual_uses:[
+    {use:'Penetrating abdominal trauma — once-daily IM PFC protocol',note:'JTS CPG: ertapenem 1g IM once daily. Only carbapenem with reliable IM administration. Covers entire polymicrobial spectrum of abdominal trauma with single daily injection.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Diabetic foot infection — polymicrobial coverage',note:'Gram-positive + gram-negative + anaerobic coverage for diabetic foot; IM administration enables outpatient treatment.',ev:'strong',levels:['ccatt']},
+    {use:'Community-acquired intraabdominal infections',note:'Covers E. coli, Klebsiella, Bacteroides, Enterococcus faecalis spectrum for peritonitis and abscesses.',ev:'strong',levels:['ccatt']},
+    {use:'Complicated UTI / pyelonephritis — IM option',note:'IM ertapenem for severe UTI when IV access unavailable; once-daily dosing.',ev:'strong',levels:['sof','ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Moxifloxacin PO',note:'Anaerobic + gram-negative PO coverage; less potent but tactically simpler',caveat:'No gram-positive coverage equivalent to ertapenem; PO absorption variable in critically ill'},
+    {name:'Ceftriaxone + Metronidazole',note:'Gram-negative (ceftriaxone) + anaerobic (metro) combination',caveat:'Two drugs; no Enterococcus coverage; less convenient'},
+  ],
+  tags:['carbapenem','abdominal trauma','JTS CPG','once daily IM','broad spectrum','anaerobic'],
+  tag_colors:['green','red','orange','green','teal','green'],
+  warnings:'Does NOT cover Pseudomonas — use meropenem/imipenem if Pseudomonas suspected (burns, ventilator-associated). Seizure risk with high doses or renal failure. Carbapenem-resistant organisms (CRE) — reserve for appropriate indications.',
+  notes:'Unique tactical advantage: only carbapenem available as once-daily IM. Allows broad-spectrum coverage in PFC without IV access. JTS CPG first-line for penetrating abdominal trauma antibiotic coverage.',
+  ev_overall:'strong'
+},
+
+{
+  id:'ceftriaxone', name:'Ceftriaxone (Rocephin)', icon:'🔬', cat:'abx',
+  levels:['sof','ccatt'],
+  drug_class:'3rd generation cephalosporin / Beta-lactam',
+  primary_use:'Pneumonia; meningitis; sepsis; gonorrhea; Lyme disease',
+  mechanism:'Binds penicillin-binding proteins (PBPs) → inhibits cell wall synthesis → bactericidal; broad gram-negative coverage; moderate gram-positive; penetrates CSF; once-daily IM or IV; biliary excretion (safe in renal failure)',
+  level_context:{
+    sof:'Community-acquired pneumonia, meningitis, sepsis in PFC. Once-daily IM 1-2g. Covers most community pathogens. Combine with azithromycin for atypical pneumonia coverage.',
+    ccatt:'IV 1-2g daily. Meningitis 2g q12h. Sepsis empiric coverage. Combine with metronidazole for intraabdominal infections. Safe in renal failure — biliary excretion.'
+  },
+  dual_uses:[
+    {use:'Bacterial meningitis — high-dose CSF penetration',note:'2g IV q12h achieves therapeutic CSF concentrations; covers N. meningitidis, S. pneumoniae, H. influenzae. Combine with dexamethasone.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Sepsis empiric coverage — gram-negative bacteremia',note:'Excellent gram-negative bactericidal coverage; first-line for gram-negative sepsis in deployed settings.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Lyme disease — IV treatment',note:'2g IV daily for disseminated Lyme disease with neurological or cardiac involvement; deployed personnel in endemic areas.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Gonorrhea — single IM dose',note:'500 mg IM single dose; relevant for SOF deployed personnel in endemic areas.',ev:'strong',levels:['sof']},
+    {use:'Renal failure antibiotic — biliary excretion',note:'Primarily excreted in bile → no dose adjustment in renal failure; preferred beta-lactam when renal function compromised.',ev:'strong',levels:['ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Ciprofloxacin IV',note:'Gram-negative coverage; less gram-positive; no CSF penetration equivalent',caveat:'No meningitis coverage; less gram-positive activity'},
+    {name:'Cefazolin IV',note:'1st gen cephalosporin; gram-positive focused',caveat:'Much less gram-negative coverage; not equivalent for sepsis/meningitis'},
+  ],
+  tags:['cephalosporin','meningitis','sepsis','once daily IM','renal safe','gram-negative'],
+  tag_colors:['green','purple','red','green','teal','green'],
+  warnings:'Biliary sludge with prolonged use. Do NOT mix with calcium-containing IV solutions (precipitation). Cross-reactivity with penicillin allergy (~1-2% true cross-reactivity).',
+  notes:'Biliary excretion = no dose adjustment in renal failure. Critical advantage in AKI patients. Most versatile single-agent antibiotic for deployed settings.',
+  ev_overall:'strong'
+},
+
+{
+  id:'azithromycin', name:'Azithromycin (Zithromax)', icon:'🔬', cat:'abx',
+  levels:['r12','sof','ccatt'],
+  drug_class:'Macrolide antibiotic / Anti-inflammatory',
+  primary_use:'Atypical pneumonia; STIs; Campylobacter diarrhea; anti-inflammatory',
+  mechanism:'Binds 50S ribosomal subunit → inhibits protein synthesis → bacteriostatic (bactericidal at high concentrations); intracellular accumulation → effective against intracellular organisms; anti-inflammatory via NF-κB inhibition and macrophage modulation independent of antimicrobial effect; long tissue half-life (3-5 days)',
+  level_context:{
+    r12:'Mission-degrading diarrhea treatment: azithromycin 500 mg daily x3 days for Campylobacter (ciprofloxacin-resistant). Respiratory tract infections. STI treatment (1g single dose for chlamydia).',
+    sof:'Atypical pneumonia coverage to combine with ceftriaxone. Anti-inflammatory bronchitis management. Traveler\'s diarrhea when ciprofloxacin resistance suspected.',
+    ccatt:'Pneumonia combination therapy. Anti-inflammatory adjunct in ARDS and diffuse alveolar damage. Prophylaxis in immunocompromised.'
+  },
+  dual_uses:[
+    {use:'Campylobacter diarrhea — ciprofloxacin resistance',note:'Ciprofloxacin resistance in Campylobacter >50% in many regions. Azithromycin 500 mg daily x3 days is now preferred for Campylobacter traveler\'s diarrhea.',ev:'strong',levels:['r12','sof']},
+    {use:'Anti-inflammatory in ARDS / diffuse bronchiolitis',note:'NF-κB inhibition + macrophage modulation independent of antimicrobial effect; studied for ARDS adjunct and post-viral bronchiolitis.',ev:'emerging',levels:['ccatt']},
+    {use:'Chlamydia/STI treatment — single dose',note:'1g PO single dose for chlamydia; relevant for SOF deployed personnel.',ev:'strong',levels:['sof']},
+    {use:'MAC prophylaxis in immunocompromised',note:'Weekly azithromycin 1200 mg for MAC prophylaxis in HIV/immunosuppressed patients.',ev:'strong',levels:['ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Doxycycline',note:'Covers atypical organisms and intracellular pathogens; different class',caveat:'No macrolide anti-inflammatory effect; no Campylobacter activity'},
+    {name:'Clarithromycin',note:'Same macrolide class; similar spectrum',caveat:'More drug interactions; BID dosing; less convenient'},
+  ],
+  tags:['macrolide','atypical pneumonia','Campylobacter','anti-inflammatory','intracellular','single dose STI'],
+  tag_colors:['green','blue','teal','teal','purple','pink'],
+  warnings:'QT prolongation — avoid with other QT-prolonging agents. Hepatotoxicity rare. Resistance increasing globally for many organisms. Drug interactions via CYP3A4.',
+  notes:'Anti-inflammatory mechanism is separate from antimicrobial — explains benefit in non-infectious inflammatory airway conditions. Long tissue half-life means 5-day tissue levels after 3-day course.',
+  ev_overall:'strong'
+},
+
+{
+  id:'flumazenil', name:'Flumazenil (Romazicon)', icon:'🛡️', cat:'antidote',
+  levels:['sof','ccatt'],
+  drug_class:'Competitive benzodiazepine receptor antagonist',
+  primary_use:'Benzodiazepine overdose reversal; procedural sedation reversal',
+  mechanism:'Competitive antagonism at GABA-A benzodiazepine binding site → reverses benzodiazepine-induced CNS/respiratory depression; short duration (30-60 min) — SHORTER than most benzodiazepines → re-sedation expected; does NOT reverse other sedatives (opioids, barbiturates, propofol)',
+  level_context:{
+    sof:'Benzodiazepine OD reversal in PFC. Diagnostic challenge for undifferentiated sedation. 0.2 mg IV q1 min to effect (max 1 mg). Duration shorter than most benzos — monitor for re-sedation.',
+    ccatt:'Procedural sedation reversal. BZD OD during CASEVAC. Diagnostic for comatose patients. Re-sedation monitoring protocol essential during transport.'
+  },
+  dual_uses:[
+    {use:'Diagnostic challenge — undifferentiated sedation/coma',note:'If AMS reverses with flumazenil → benzodiazepine etiology confirmed. Guides management without imaging in resource-limited settings. Same diagnostic principle as naloxone for opioids.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Procedural sedation reversal',note:'Reverse midazolam after procedures when prolonged sedation undesired; enables faster recovery and extubation.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Hepatic encephalopathy (research)',note:'Endogenous BZD-like substances accumulate in hepatic failure; flumazenil may transiently improve HE — investigational.',ev:'investigational',levels:['ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Supportive care / airway management',note:'BVM and airway support while waiting for benzodiazepine to wear off',caveat:'Only temporizing; no pharmacological reversal equivalent'},
+  ],
+  tags:['benzodiazepine reversal','diagnostic','GABA-A antagonist','re-sedation risk','procedural reversal'],
+  tag_colors:['purple','blue','purple','orange','teal'],
+  warnings:'Duration (30-60 min) SHORTER than most benzodiazepines — RE-SEDATION EXPECTED. Multiple doses or infusion may be required. Will precipitate acute withdrawal in BZD-dependent patients. Does NOT reverse opioids, barbiturates, or propofol.',
+  notes:'Mirror image of naloxone: diagnostic + reversal for its drug class. Same re-sedation vigilance required. Does NOT work for non-BZD sedatives.',
+  ev_overall:'strong'
+},
+
+{
+  id:'adenosine', name:'Adenosine (Adenocard)', icon:'❤️', cat:'cardiac',
+  levels:['sof','ccatt'],
+  drug_class:'Endogenous purine nucleoside / AV nodal blocker',
+  primary_use:'SVT (supraventricular tachycardia) termination; diagnostic for wide-complex tachycardia',
+  mechanism:'Activates A1 adenosine receptors → hyperpolarizes AV nodal cells → transient AV block (6-12 seconds) → interrupts re-entrant SVT circuits; endogenous molecule with ultra-short half-life (<10 seconds) → effects fully reversible in seconds; diagnostic: adenosine-sensitive SVT terminates, VT does not',
+  level_context:{
+    sof:'SVT in PFC — 6 mg rapid IV push followed immediately by 20 mL saline flush. MUST use antecubital or central vein (rapid central delivery). If no effect in 1-2 min, 12 mg repeat.',
+    ccatt:'Full SVT management protocol. Diagnostic for wide-complex tachycardia. Theophylline-related tachycardia may require higher doses. Have atropine ready for prolonged block.'
+  },
+  dual_uses:[
+    {use:'Diagnostic — SVT vs VT differentiation',note:'Adenosine terminates AV-nodal-dependent SVT but NOT VT. Temporary AV block during VT reveals the underlying rhythm. Critical diagnostic tool when ECG interpretation uncertain.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Wolff-Parkinson-White (WPW) — narrow complex SVT only',note:'Terminates AV-nodal-dependent tachycardia in WPW when accessory pathway not conducting antegradely. CONTRAINDICATED in pre-excited AF/WPW with wide complex.',ev:'moderate',levels:['ccatt']},
+    {use:'Stress testing — pharmacological nuclear stress test',note:'Adenosine coronary vasodilation used for nuclear stress testing in patients unable to exercise; identifies coronary artery disease.',ev:'strong',levels:['ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Vagal maneuvers (Valsalva, carotid massage)',note:'Non-pharmacological SVT termination; try first before adenosine',caveat:'Less reliable; 20-25% success rate vs >90% for adenosine'},
+    {name:'Verapamil IV',note:'Calcium channel blocker; terminates SVT; slower onset',caveat:'Contraindicated in WPW, hypotension, or concurrent beta-blockers; more side effects'},
+  ],
+  tags:['SVT','AV block','diagnostic','ultra-short acting','WPW','arrhythmia'],
+  tag_colors:['orange','orange','blue','green','purple','orange'],
+  warnings:'Must give as RAPID IV push followed immediately by saline flush — half-life <10 seconds means slow push = ineffective. Causes transient chest tightness, flushing, dyspnea — warn patient. CONTRAINDICATED in 2nd/3rd degree AV block, sick sinus syndrome, WPW with wide complex.',
+  notes:'Rapid push technique is everything: adenosine 6 mg rapid push → immediate 20 mL NS flush → raise arm. Peripheral antecubital vein acceptable if central unavailable.',
+  ev_overall:'strong'
+},
+
+{
+  id:'dopamine', name:'Dopamine', icon:'⚡', cat:'vasoactive',
+  levels:['sof','ccatt'],
+  drug_class:'Endogenous catecholamine / Dose-dependent receptor agonist',
+  primary_use:'Hemodynamically significant bradycardia; cardiogenic shock; vasopressor support',
+  mechanism:'Dose-dependent receptor activation: low (2-5 mcg/kg/min) → dopaminergic (DA1/DA2) → renal/mesenteric vasodilation; moderate (5-10) → β1 → inotropy/chronotropy; high (>10) → α1 → vasoconstriction; endogenous catecholamine precursor to norepinephrine',
+  level_context:{
+    sof:'Bradycardia unresponsive to atropine when external pacing unavailable. Cardiogenic shock in PFC. 5-20 mcg/kg/min titrated.',
+    ccatt:'Second-line vasopressor when norepinephrine unavailable. Septic shock in pediatric patients (relatively more evidence). Bradycardia support. Renal-dose dopamine (controversial — largely abandoned).'
+  },
+  dual_uses:[
+    {use:'Bradycardia — chronotropic when atropine fails',note:'Beta-1 agonism increases heart rate; used for symptomatic bradycardia when atropine ineffective and external pacing unavailable.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Cardiogenic shock — inotropy + vasoconstriction',note:'Combined β1 (inotropy) + α1 (vasoconstriction) at moderate-high doses; alternative to dobutamine + norepinephrine combination when single agent preferred.',ev:'moderate',levels:['ccatt']},
+    {use:'Pediatric septic shock — relatively preferred',note:'More pediatric evidence than norepinephrine for septic shock; dopaminergic receptors more prominent in pediatric physiology.',ev:'moderate',levels:['ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Norepinephrine (preferred for septic shock)',note:'More evidence-based; less arrhythmia risk',caveat:'No chronotropic effect for bradycardia'},
+    {name:'Epinephrine',note:'Full adrenergic agonist; covers all indications',caveat:'More tachycardia and lactic acidosis'},
+  ],
+  tags:['dose-dependent','bradycardia','cardiogenic shock','chronotropy','inotropy','vasopressor'],
+  tag_colors:['purple','orange','red','orange','blue','orange'],
+  warnings:'Higher arrhythmia risk than norepinephrine — particularly atrial fibrillation. Extravasation causes tissue necrosis. Renal-dose dopamine (2-3 mcg/kg/min) does NOT protect kidneys — largely abandoned.',
+  notes:'The "renal dose" concept (2-3 mcg/kg/min to protect kidneys) has been disproven — do not use for renal protection. Use for hemodynamic indications only.',
+  ev_overall:'moderate'
+},
+
+{
+  id:'lorazepam', name:'Lorazepam (Ativan)', icon:'💉', cat:'analgesia',
+  levels:['sof','ccatt'],
+  drug_class:'Benzodiazepine / GABA-A modulator / Long-acting anticonvulsant',
+  primary_use:'Status epilepticus; severe anxiety; alcohol withdrawal; ICU sedation',
+  mechanism:'Positive allosteric GABA-A receptor modulator → enhances Cl⁻ influx → CNS depression, anticonvulsant, anxiolysis, muscle relaxation; longer duration than midazolam (4-8h); reliable IM absorption (unlike diazepam); less lipophilic than midazolam → slower CNS penetration but longer effect',
+  level_context:{
+    sof:'Status epilepticus when midazolam unavailable. IM lorazepam 4 mg for seizure. Alcohol withdrawal management in PFC. Severe anxiety/agitation.',
+    ccatt:'ICU sedation protocol. Status epilepticus second-line. Alcohol/benzo withdrawal titration. CIWA protocol. Longer acting than midazolam — useful for sustained sedation.'
+  },
+  dual_uses:[
+    {use:'Status epilepticus — IM when IV unavailable',note:'4 mg IM lorazepam; reliable IM absorption unlike diazepam. Evidence: equivalent to IV lorazepam in RAMPART trial when IM given promptly.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Alcohol withdrawal — CIWA-based protocol',note:'Symptom-triggered lorazepam dosing per CIWA score; prevents withdrawal seizures and delirium tremens. Longer half-life than midazolam = smoother titration.',ev:'strong',levels:['ccatt']},
+    {use:'ICU sedation — longer duration than midazolam',note:'4-6 mg IV q2-4h or infusion; provides sustained sedation; less accumulation than diazepam.',ev:'strong',levels:['ccatt']},
+    {use:'Acute panic/anxiety — combat stress reaction',note:'0.5-2 mg IM/PO for acute panic or combat stress reaction with severe anxiety; short-term use only.',ev:'moderate',levels:['sof','ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Midazolam IM/IV',note:'Faster onset, shorter duration; reliable IM; preferred for acute seizure',caveat:'Shorter duration requires repeat dosing sooner'},
+    {name:'Diazepam rectal/IV',note:'Same class; IV available; rectal gel (Diastat) for field seizure',caveat:'Erratic IM absorption; very long half-life with active metabolites'},
+  ],
+  tags:['benzodiazepine','status epilepticus','alcohol withdrawal','ICU sedation','GABA-A','CIWA'],
+  tag_colors:['purple','red','orange','blue','purple','teal'],
+  warnings:'Respiratory depression — particularly with opioids. Propylene glycol vehicle in IV formulation → toxicity with high-dose prolonged infusion. Accumulates in obesity and hepatic failure.',
+  notes:'IM lorazepam is as effective as IV for status epilepticus when given promptly (RAMPART trial). Tactical advantage: reliable IM absorption unlike diazepam.',
+  ev_overall:'strong'
+},
+
+{
+  id:'phenobarbital', name:'Phenobarbital', icon:'💊', cat:'analgesia',
+  levels:['ccatt'],
+  drug_class:'Barbiturate / GABA-A modulator / Anticonvulsant',
+  primary_use:'Refractory status epilepticus; neonatal seizures; alcohol withdrawal refractory to BZD',
+  mechanism:'Direct GABA-A receptor agonist (unlike BZDs which are allosteric modulators) → opens Cl⁻ channel directly → more potent CNS depression; also inhibits glutamate AMPA receptors; burst suppression at high doses; very long half-life (80-120h) → loading dose approach',
+  level_context:{
+    ccatt:'Third-line status epilepticus after BZD + phenytoin/levetiracetam failure. 20 mg/kg IV load at 50-100 mg/min. Refractory alcohol withdrawal when BZDs insufficient. Neonatal seizures.'
+  },
+  dual_uses:[
+    {use:'Refractory status epilepticus — third line',note:'20 mg/kg IV load after BZD + phenytoin failure. Direct GABA-A agonism works when allosteric modulation (BZDs) is insufficient.',ev:'strong',levels:['ccatt']},
+    {use:'Refractory alcohol withdrawal — BZD-resistant',note:'Some alcohol withdrawal patients are BZD-resistant due to GABA receptor downregulation; phenobarbital as direct agonist bypasses this resistance.',ev:'strong',levels:['ccatt']},
+    {use:'Neonatal seizures — first-line',note:'20 mg/kg IV; first-line for neonatal seizures (unlike adults where BZDs are first-line); different receptor pharmacology in neonates.',ev:'strong',levels:['ccatt']},
+    {use:'ICP — burst suppression for refractory intracranial hypertension',note:'High-dose phenobarbital burst suppression reduces CMRO2 and ICP when other measures fail; alternative to pentobarbital coma.',ev:'moderate',levels:['ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Propofol infusion (burst suppression)',note:'Faster and more titratable for burst suppression',caveat:'PRIS risk with prolonged high-dose; different mechanism'},
+    {name:'Midazolam infusion (SE)',note:'BZD infusion for ongoing seizure management',caveat:'Tolerance develops faster; less direct GABA agonism'},
+  ],
+  tags:['barbiturate','refractory SE','alcohol withdrawal','neonatal seizures','burst suppression','GABA agonist'],
+  tag_colors:['purple','red','orange','pink','blue','purple'],
+  warnings:'Respiratory depression — intubation often required with loading dose. Hypotension during IV loading. Very long half-life means effects persist days. Drug interactions via CYP450 induction.',
+  notes:'Key difference from BZDs: direct GABA-A agonist vs allosteric modulator — explains efficacy when BZDs fail (downregulated receptors). Neonatal seizures: phenobarbital is first-line (not BZDs).',
+  ev_overall:'strong'
+},
+
+{
+  id:'methoxyflurane', name:'Methoxyflurane (Penthrox)', icon:'🫁', cat:'analgesia',
+  levels:['sof'],
+  drug_class:'Inhaled analgesic / Volatile halogenated ether',
+  primary_use:'Self-administered inhaled analgesia; acute pain; trauma pain',
+  mechanism:'Inhaled low-dose methoxyflurane → CNS depression of pain pathways via NMDA antagonism, voltage-gated Ca²⁺ channel inhibition, and GABA-A modulation → rapid-onset (6-10 sec) analgesia without loss of consciousness; metabolized partially in liver → fluoride ion (nephrotoxicity at anesthetic doses, NOT analgesic doses)',
+  level_context:{
+    sof:'Australian/UK SOF standard. Self-administered via Green Whistle inhaler — patient controls their own analgesia. Rapid onset, no IV needed, no overdose risk (patient drops inhaler if over-sedated). Ideal for combat casualty self-care.'
+  },
+  dual_uses:[
+    {use:'Self-administered analgesia — no medic needed',note:'Patient inhales as needed; self-limiting (drops inhaler if over-sedated). No IV, no needle, no monitoring needed. Transforms casualty self-care capability.',ev:'strong',levels:['sof']},
+    {use:'Procedural analgesia — wound care, dressing changes',note:'Short-duration inhaled analgesia for painful procedures; 3 mL provides 25-30 min of analgesia.',ev:'strong',levels:['sof']},
+    {use:'Pediatric/civilian trauma — non-invasive',note:'Accepted in pediatric emergencies; no IV; rapid onset; patient-controlled safety.',ev:'strong',levels:['sof']},
+  ],
+  shortage_alternatives:[
+    {name:'OTFC (Oral transmucosal fentanyl)',note:'Rapid-onset self-administered opioid analgesia',caveat:'Opioid side effects; requires monitoring; overdose risk'},
+    {name:'Ketamine IN (intranasal)',note:'Subanesthetic ketamine via atomizer',caveat:'Requires atomizer device; medic administration preferred'},
+  ],
+  tags:['inhaled analgesia','self-administered','no IV','NMDA antagonist','rapid onset','Green Whistle'],
+  tag_colors:['blue','green','green','purple','yellow','teal'],
+  warnings:'Limited to 6 mL per treatment episode. NOT for anesthetic doses (nephrotoxicity and hepatotoxicity at higher doses). Avoid in renal failure. Avoid in history of malignant hyperthermia.',
+  notes:'Not yet FDA-approved in US but used by Australian and UK military SOF. Self-limiting mechanism (patient drops inhaler if over-sedated) makes it uniquely safe for self-administration.',
+  ev_overall:'strong'
+},
+
+{
+  id:'whole_blood', name:'Whole Blood / Blood Products (pRBC, FFP, PLT)', icon:'🩸', cat:'hemostasis',
+  levels:['sof','ccatt'],
+  drug_class:'Blood component / Oxygen carrier / Coagulation factor source',
+  primary_use:'Hemorrhagic shock resuscitation; massive transfusion; coagulopathy correction',
+  mechanism:'pRBC: restores O2-carrying capacity via hemoglobin; FFP: replaces all coagulation factors (I, II, V, VII, VIII, IX, X, XI); PLT: restores platelet-mediated primary hemostasis; Whole Blood: all three simultaneously — most physiologically complete resuscitation fluid; low-titer group O whole blood (LTOWB) is current JTS standard',
+  level_context:{
+    sof:'LTOWB (Low-Titer O Whole Blood) is JTS standard for far-forward resuscitation. Walking blood bank (WBB) for austere environments. 1:1:1 ratio when components only. Whole blood preferred over components when available.',
+    ccatt:'Full 1:1:1 (pRBC:FFP:PLT) massive transfusion protocol with TXA. TEG/ROTEM-guided goal-directed transfusion. Calcium replacement mandatory. Warmed products essential.'
+  },
+  dual_uses:[
+    {use:'Damage control resuscitation — far-forward',note:'JTS CPG: LTOWB preferred over crystalloid. Whole blood simultaneously replaces O2-carrying capacity, coagulation factors, and platelets. Reduces crystalloid-induced coagulopathy.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Walking blood bank (WBB) — austere environment',note:'Pre-screened and typed unit personnel donate fresh whole blood in field when stored blood unavailable. JTS WBB protocol enables far-forward whole blood transfusion.',ev:'strong',levels:['sof']},
+    {use:'Massive transfusion coagulopathy correction',note:'FFP replaces all coagulation factors; PLT restores primary hemostasis; calcium MUST accompany all blood products (citrate chelates ionized Ca²⁺).',ev:'strong',levels:['sof','ccatt']},
+    {use:'Hemorrhagic shock — permissive hypotension bridge',note:'Target MAP 50-65 until surgical hemorrhage control; blood products maintain coagulation while minimizing dilutional coagulopathy from crystalloid.',ev:'strong',levels:['sof','ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Hextend (500 mL) + TXA — bridge only',note:'Volume expansion without oxygen-carrying capacity; TXA preserves formed clot',caveat:'No O2 carrying capacity; no coagulation factors; temporary bridge only'},
+    {name:'Lyophilized plasma (freeze-dried FFP)',note:'Room-temperature storage; reconstituted with water; some NATO forces carry',caveat:'No RBC component; no platelets; coagulation factors only'},
+  ],
+  tags:['hemorrhagic shock','DCR','whole blood','1:1:1','JTS CPG','coagulopathy'],
+  tag_colors:['red','red','red','orange','orange','red'],
+  warnings:'Type and cross-match when possible. LTOWB is type O — use judiciously in female casualties of childbearing age (Rh sensitization). Warm ALL blood products. Calcium replacement MANDATORY with every 4 units.',
+  notes:'JTS current standard: LTOWB > 1:1:1 components > crystalloid. Never give crystalloid as primary resuscitation fluid in hemorrhagic shock. Each unit of whole blood = ~18 mmol citrate → calcium replacement critical.',
+  ev_overall:'strong'
+},
+
+{
+  id:'oxygen', name:'Supplemental Oxygen', icon:'💨', cat:'airway',
+  levels:['r12','sof','ccatt'],
+  drug_class:'Medical gas / Oxygen therapy',
+  primary_use:'Hypoxia; respiratory distress; CO poisoning; TBI; chest injuries',
+  mechanism:'Increases FiO2 → increases dissolved O2 in plasma and hemoglobin O2 saturation → improves tissue oxygen delivery; in CO poisoning: high FiO2 competes with CO for hemoglobin binding → accelerates COHb clearance (half-life: room air 5h → 100% O2 60-90 min)',
+  level_context:{
+    r12:'Pulse ox <94% → apply O2. Penetrating chest trauma, tension pneumothorax post-decompression, hemorrhagic shock. NRB mask or nasal cannula. Monitor SpO2. Limited O2 supply — use judiciously.',
+    sof:'Full O2 management. Hyperbaric-equivalent CO treatment with NRB at 15L/min. Post-airway management O2. Smoke inhalation high-flow O2.',
+    ccatt:'Ventilator O2 management. 100% O2 for CO poisoning. Titrate FiO2 to SpO2 94-98% (avoid hyperoxia in post-cardiac arrest and COPD).'
+  },
+  dual_uses:[
+    {use:'CO poisoning — accelerates COHb clearance',note:'100% O2 via NRB reduces CO half-life from 5 hours (room air) to 60-90 minutes. High-flow O2 is first-line for all CO/smoke inhalation casualties.',ev:'strong',levels:['r12','sof','ccatt']},
+    {use:'Cluster headache — abortive treatment',note:'100% O2 at 10-15 L/min via NRB for 15-20 min aborts cluster headache attacks in 70-80% of cases.',ev:'strong',levels:['sof','ccatt']},
+    {use:'TBI — prevent secondary hypoxic injury',note:'Maintain SpO2 >94% in TBI. Hypoxia is a major secondary injury driver. Hyperoxia also harmful in post-cardiac arrest — titrate carefully.',ev:'strong',levels:['r12','sof','ccatt']},
+    {use:'Pneumothorax post-decompression — nitrogen washout',note:'High-flow O2 washes out nitrogen from pneumothorax cavity → accelerates spontaneous reabsorption of small PTX.',ev:'moderate',levels:['r12','sof','ccatt']},
+  ],
+  shortage_alternatives:[
+    {name:'Positioning — optimize O2 delivery',note:'Sitting upright or recovery position maximizes respiratory mechanics',caveat:'No supplemental FiO2 increase'},
+    {name:'Airway management — BVM with room air',note:'Positive pressure ventilation with ambient air provides ~21% FiO2',caveat:'No FiO2 increase without O2 supply'},
+  ],
+  tags:['hypoxia','CO poisoning','TBI','cluster headache','nitrogen washout','FiO2'],
+  tag_colors:['blue','orange','blue','pink','teal','teal'],
+  warnings:'HYPEROXIA is harmful in post-cardiac arrest (ROSC) and COPD — titrate to SpO2 94-98%, not 100%. O2 supports combustion — no open flames. Limited supply in field — conserve.',
+  notes:'CO poisoning: 100% O2 NRB is mandatory and urgent. SpO2 pulse oximetry is FALSELY NORMAL in CO poisoning — CO-oximetry required for accurate COHb measurement.',
+  ev_overall:'strong'
+},
+
+{
+  id:'ipratropium', name:'Ipratropium (Atrovent)', icon:'🫁', cat:'airway',
+  levels:['sof','ccatt'],
+  drug_class:'Short-acting muscarinic antagonist (SAMA) / Anticholinergic bronchodilator',
+  primary_use:'COPD exacerbation; bronchospasm adjunct; secretion reduction',
+  mechanism:'Blocks muscarinic M3 receptors on airway smooth muscle → prevents acetylcholine-mediated bronchoconstriction → bronchodilation; also reduces airway secretions; does NOT cross BBB (quaternary ammonium) → no systemic anticholinergic effects; additive with beta-agonists via different mechanism',
+  level_context:{
+    sof:'Add to albuterol for refractory bronchospasm — different mechanism, additive effect. COPD exacerbation management. Secretion reduction pre-intubation.',
+    ccatt:'Nebulized with albuterol for COPD/asthma. Ventilator patient bronchodilation. Secretion management in intubated patients.'
+  },
+  dual_uses:[
+    {use:'Refractory bronchospasm — additive with albuterol',note:'Ipratropium + albuterol = dual bronchodilation via different mechanisms (anticholinergic + beta-agonist). Combination reduces hospitalization vs either alone in COPD exacerbations.',ev:'strong',levels:['sof','ccatt']},
+    {use:'COPD exacerbation — preferred over albuterol as primary',note:'Anticholinergic mechanism more effective than beta-agonism in COPD pathophysiology; ipratropium may be more effective than albuterol as sole agent in pure COPD.',ev:'strong',levels:['sof','ccatt']},
+    {use:'Secretion reduction pre-intubation',note:'Reduces airway secretions before laryngoscopy; complements atropine when full systemic anticholinergic effect desired.',ev:'moderate',levels:['sof','ccatt']},
+    {use:'Rhinorrhea — intranasal',note:'0.03% nasal spray reduces rhinorrhea in viral URI and allergic rhinitis via M3 antagonism in nasal mucosa.',ev:'strong',levels:['sof']},
+  ],
+  shortage_alternatives:[
+    {name:'Albuterol alone',note:'Beta-agonist bronchodilation; different but overlapping effect',caveat:'Loses additive anticholinergic effect; less effective for COPD'},
+    {name:'Atropine (systemic)',note:'Systemic anticholinergic bronchodilation',caveat:'Crosses BBB — CNS effects; less targeted than ipratropium'},
+  ],
+  tags:['anticholinergic','COPD','bronchodilation','albuterol adjunct','secretions','muscarinic'],
+  tag_colors:['purple','blue','blue','teal','teal','purple'],
+  warnings:'Paradoxical bronchospasm rare but possible. Avoid in narrow-angle glaucoma (nebulized form can reach eyes). Urinary retention in BPH.',
+  notes:'Combination albuterol + ipratropium (Combivent/DuoNeb) is standard for COPD exacerbations. Different mechanism = additive effect without increased side effects.',
+  ev_overall:'strong'
+},
+
 ]; // end DB
 
 // ═══════════════════════════════════════════
@@ -1060,10 +1585,10 @@ function buildSidebar(){
   const pool = activeLevel==='all' ? DB : DB.filter(d=>d.levels.includes(activeLevel));
   const totalDual = pool.reduce((a,d)=>a+d.dual_uses.length,0);
   document.getElementById('statGrid').innerHTML=`
-    <div class="stat-box"><div class="stat-num">${pool.length}</div><div class="stat-label">Drugs</div></div>
-    <div class="stat-box"><div class="stat-num">${totalDual}</div><div class="stat-label">Dual Uses</div></div>
-    <div class="stat-box"><div class="stat-num">${pool.reduce((a,d)=>a+d.dual_uses.filter(u=>u.ev==='strong').length,0)}</div><div class="stat-label">Strong Ev</div></div>
-    <div class="stat-box"><div class="stat-num">${pool.reduce((a,d)=>a+(d.shortage_alternatives||[]).length,0)}</div><div class="stat-label">Alts</div></div>`;
+    <div class="stat-box" id="stat-all" onclick="statFilter('all')" title="전체 약물 보기"><div class="stat-num">${pool.length}</div><div class="stat-label">Drugs</div></div>
+    <div class="stat-box" id="stat-dual" onclick="statFilter('dual')" title="Dual Uses 많은 순 정렬"><div class="stat-num">${totalDual}</div><div class="stat-label">Dual Uses</div></div>
+    <div class="stat-box" id="stat-strong" onclick="statFilter('strong')" title="Strong Evidence 약물만 보기"><div class="stat-num">${pool.reduce((a,d)=>a+d.dual_uses.filter(u=>u.ev==='strong').length,0)}</div><div class="stat-label">Strong Ev</div></div>
+    <div class="stat-box" id="stat-alts" onclick="statFilter('alts')" title="대체약물 많은 순 정렬"><div class="stat-num">${pool.reduce((a,d)=>a+(d.shortage_alternatives||[]).length,0)}</div><div class="stat-label">Alts</div></div>`;
 
   // Level tabs
   ['all','r12','sof','ccatt'].forEach(l=>{
@@ -1087,12 +1612,12 @@ function buildSidebar(){
 // LEVEL / CAT / MODE
 // ═══════════════════════════════════════════
 function setLevel(lv){
-  activeLevel=lv;activeCat='all';
+  activeLevel=lv;activeCat='all';activeStatFilter=null;clearStatActive();
   buildSidebar();
   const q=document.getElementById('searchInput').value.trim();
   if(q)doSearch();else renderAll();
 }
-function setCat(cat){activeCat=cat;buildSidebar();const q=document.getElementById('searchInput').value.trim();if(q)doSearch();else renderAll();}
+function setCat(cat){activeCat=cat;activeStatFilter=null;clearStatActive();buildSidebar();const q=document.getElementById('searchInput').value.trim();if(q)doSearch();else renderAll();}
 function setMode(mode){
   searchMode=mode;
   ['drug','Sx','mech'].forEach(m=>{
@@ -1338,6 +1863,61 @@ async function streamAI(prompt){
 // ── TEST AI CONNECTION ──
 async function testAI(){
   await streamAI('Reply with exactly this JSON only, no other text: {"status":"ok","model":"haiku"}');
+}
+
+// ── STAT FILTER ──
+let activeStatFilter = null;
+function statFilter(type){
+  // Toggle off if same
+  if(activeStatFilter === type){ activeStatFilter=null; renderAll(); clearStatActive(); return; }
+  activeStatFilter = type;
+  clearStatActive();
+  const el = document.getElementById('stat-'+type);
+  if(el) el.classList.add('active');
+
+  let pool = DB;
+  if(activeLevel!=='all') pool=pool.filter(d=>d.levels.includes(activeLevel));
+  if(activeCat!=='all') pool=pool.filter(d=>d.cat===activeCat);
+
+  if(type==='all'){
+    renderCards(pool, `${pool.length} drugs — All`);
+  } else if(type==='dual'){
+    const sorted=[...pool].sort((a,b)=>b.dual_uses.length-a.dual_uses.length);
+    renderCards(sorted, `${pool.length} drugs — sorted by most dual uses`);
+  } else if(type==='strong'){
+    const filtered=pool.filter(d=>d.ev_overall==='strong');
+    renderCards(filtered, `${filtered.length} drugs — Strong Evidence only`);
+  } else if(type==='alts'){
+    const sorted=[...pool].sort((a,b)=>(b.shortage_alternatives||[]).length-(a.shortage_alternatives||[]).length);
+    renderCards(sorted, `${pool.length} drugs — sorted by most alternatives`);
+  }
+  // Close mobile sidebar after selection
+  if(window.innerWidth<=768) closeMobileAll();
+}
+function clearStatActive(){
+  ['all','dual','strong','alts'].forEach(t=>{ const el=document.getElementById('stat-'+t); if(el) el.classList.remove('active'); });
+}
+
+// ── MOBILE FUNCTIONS ──
+function toggleSidebar(){
+  const s=document.querySelector('.sidebar');
+  const o=document.getElementById('mobileOverlay');
+  s.classList.toggle('open');
+  o.classList.toggle('open');
+}
+function toggleAIPanel(){
+  const p=document.querySelector('.ai-panel');
+  const o=document.getElementById('mobileOverlay');
+  // Also trigger AI analysis if search has query
+  const q=document.getElementById('searchInput').value.trim();
+  if(q && !p.classList.contains('open')) askAI();
+  p.classList.toggle('open');
+  o.classList.toggle('open');
+}
+function closeMobileAll(){
+  document.querySelector('.sidebar').classList.remove('open');
+  document.querySelector('.ai-panel').classList.remove('open');
+  document.getElementById('mobileOverlay').classList.remove('open');
 }
 
 // ── STARTUP ──
