@@ -215,6 +215,74 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 @media (min-width: 769px) {
   .mobile-menu-btn,.mobile-ai-btn,.mobile-overlay,.mobile-close{display:none!important}
 }
+
+/* === SOURCE CITATIONS (TCCC 2026 / JTS hierarchy) === */
+.src-box{background:linear-gradient(135deg,#e8f5ee 0%,#f0f9f3 100%);border:1px solid #1b6e3a;border-left:4px solid #1b6e3a;border-radius:6px;padding:9px 11px;margin-bottom:10px;font-size:11px}
+.src-pending{background:linear-gradient(135deg,#fff8e1 0%,#fffbf0 100%);border-color:#7a5f00;border-left-color:#7a5f00}
+.src-label{font-size:10px;font-weight:700;color:#1b6e3a;letter-spacing:0.5px;margin-bottom:6px;text-transform:uppercase}
+.src-pending .src-label{color:#7a5f00}
+.src-pending-text{color:var(--text2);font-size:10px;line-height:1.5;font-style:italic}
+.src-item{padding:6px 0;border-top:1px dashed #c8d8cc}
+.src-item:first-child{border-top:none;padding-top:2px}
+.src-tier-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.src-tier{font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:0.3px}
+.src-tier-A{background:#1b6e3a;color:#fff}
+.src-tier-B{background:#1565c0;color:#fff}
+.src-tier-C{background:#bf5000;color:#fff}
+.src-tier-D{background:#6200ea;color:#fff}
+.src-tier-E{background:#7a5f00;color:#fff}
+.src-tier-X{background:#7a9ab8;color:#fff}
+.src-name{font-weight:700;color:var(--text);font-size:11px}
+.src-date{margin-left:auto;font-size:9px;color:var(--text3)}
+.src-section{font-size:10px;color:var(--text2);margin:3px 0;font-weight:600}
+.src-line{font-size:10px;color:var(--text);line-height:1.5;margin:2px 0}
+.src-line strong{color:var(--text2);font-weight:600}
+.src-changes{background:#fff3e0;border-left:2px solid #bf5000;padding:4px 7px;margin:4px 0 2px;font-size:10px;color:#bf5000;border-radius:0 3px 3px 0}
+.src-url{display:inline-block;margin-top:4px;font-size:10px;color:#1565c0;text-decoration:none;font-weight:600}
+.src-url:hover{text-decoration:underline}
+.val-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:4px;letter-spacing:0.3px;vertical-align:middle}
+.val-tccc{background:#1b6e3a;color:#fff}
+.val-new{background:#bf5000;color:#fff;animation:pulse-new 2s ease-in-out infinite}
+@keyframes pulse-new{0%,100%{opacity:1}50%{opacity:0.7}}
+
+/* === DECISION ENGINE MODE === */
+.de-toggle{position:fixed;bottom:14px;right:14px;background:linear-gradient(135deg,#1565c0,#0d47a1);color:#fff;border:none;border-radius:50px;padding:11px 18px;font-size:12px;font-weight:700;letter-spacing:0.5px;cursor:pointer;box-shadow:0 4px 12px rgba(21,101,192,0.4);z-index:100;display:flex;align-items:center;gap:6px;transition:all 0.2s}
+.de-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(21,101,192,0.5)}
+.de-toggle.active{background:linear-gradient(135deg,#c62828,#8e0000)}
+.de-overlay{display:none;position:fixed;inset:0;background:rgba(20,30,40,0.85);z-index:200;overflow-y:auto;padding:20px}
+.de-overlay.open{display:block}
+.de-panel{max-width:900px;margin:0 auto;background:var(--bg2);border-radius:12px;padding:24px;box-shadow:0 10px 40px rgba(0,0,0,0.4)}
+.de-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--blue)}
+.de-title{font-size:18px;font-weight:700;color:var(--blue);letter-spacing:0.3px}
+.de-subtitle{font-size:11px;color:var(--text2);margin-top:2px}
+.de-close{background:transparent;border:1px solid var(--border);border-radius:6px;padding:6px 12px;cursor:pointer;font-size:12px;color:var(--text2)}
+.de-close:hover{background:var(--red-bg);color:var(--red);border-color:var(--red)}
+.de-section{margin-bottom:18px}
+.de-section-label{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+.de-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.de-input{padding:9px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:var(--bg3);color:var(--text);width:100%;font-family:inherit}
+.de-input:focus{outline:none;border-color:var(--blue);background:#fff}
+.de-select{padding:9px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:var(--bg3);color:var(--text);width:100%;cursor:pointer}
+.de-radio-grp{display:flex;gap:6px;flex-wrap:wrap}
+.de-radio{flex:1;min-width:80px;padding:9px;border:1px solid var(--border);border-radius:6px;background:var(--bg3);text-align:center;cursor:pointer;font-size:12px;font-weight:600;color:var(--text2);transition:all 0.15s}
+.de-radio.selected{background:var(--blue);color:#fff;border-color:var(--blue)}
+.de-checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:6px}
+.de-check{display:flex;align-items:center;gap:6px;padding:7px 9px;border:1px solid var(--border);border-radius:5px;background:var(--bg3);cursor:pointer;font-size:11px;color:var(--text)}
+.de-check input{margin:0}
+.de-check.checked{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
+.de-action-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--blue),#0d47a1);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;letter-spacing:0.5px;cursor:pointer;margin-top:6px}
+.de-action-btn:hover{filter:brightness(1.1)}
+.de-output{margin-top:18px;padding:14px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);min-height:100px}
+.de-output-empty{color:var(--text3);font-style:italic;text-align:center;padding:30px 10px}
+.de-rec{padding:10px 12px;background:#fff;border-left:4px solid var(--blue);border-radius:6px;margin-bottom:8px;font-size:12px}
+.de-rec-time{font-size:10px;font-weight:700;color:var(--blue);letter-spacing:0.5px;margin-bottom:4px;text-transform:uppercase}
+.de-rec-action{font-weight:600;color:var(--text);margin-bottom:3px}
+.de-rec-detail{font-size:11px;color:var(--text2);line-height:1.5}
+.de-rec-cite{font-size:10px;color:#1b6e3a;margin-top:5px;font-style:italic}
+.de-rec-warning{background:#fdecea;border-left-color:var(--red)}
+.de-rec-pfc{background:#fff3e0;border-left-color:var(--orange)}
+.de-disclaimer{margin-top:14px;padding:10px;background:#fff8e1;border:1px solid #7a5f00;border-radius:6px;font-size:10px;color:#5a4500;line-height:1.6}
+
 </style>
 </head>
 <body>
@@ -399,7 +467,28 @@ const DB = [
     ],
     "warnings": "Emergence reactions — premedicate with midazolam 0.03 mg/kg. Avoid in penetrating eye injury. NOT truly contraindicated in TBI. Laryngospasm rare but possible.",
     "notes": "R1/2 critical insight: if you only have ketamine, you can manage pain AND maintain airway AND temporize hemodynamics. No other single drug does this.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 11.b & 13.c — Analgesia / Sedation",
+        "tccc_indication": "Casualty cannot stay in fight (analgesia); procedural dissociation (sedation)",
+        "tccc_dose": "ANALGESIA: 100 mg IM OR 50 mg IN OR 25 mg (0.2-0.3 mg/kg) IV/IO over 1 min. SEDATION: 1-2 mg/kg slow IV/IO push OR 300 mg IM (2-3 mg/kg). Repeat q30 min PRN.",
+        "tccc_route": "IM / IN / IV / IO",
+        "tccc_2026_changes": "Esketamine 14-28 mg IN added as alternative. Endpoints: pain reduction OR nystagmus. Co-administration of benzodiazepines NOT recommended with ketamine. Disarm casualty before ketamine.",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "morphine",
@@ -487,7 +576,12 @@ const DB = [
     ],
     "warnings": "Respiratory depression — have naloxone ready. Avoid in TBI with hemodynamic instability. Morphine causes histamine release — fentanyl preferred for allergy-prone patients.",
     "notes": "Fentanyl IN (intranasal) is a mission-critical skill: 1.5–2 mcg/kg via MAD atomizer provides analgesia within 5 min without IV access.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "midazolam",
@@ -576,7 +670,28 @@ const DB = [
     ],
     "warnings": "Respiratory depression when combined with opioids — MUST have airway backup ready. Paradoxical agitation in children and elderly. Do NOT use as sole agent for RSI.",
     "notes": "IM midazolam for status epilepticus is now evidence-based: faster to administer than establishing IV in the field. 10 mg IM for adult SE.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 13.c — Sedation (emergence phenomenon)",
+        "tccc_indication": "Emergence phenomenon after ketamine dissociation",
+        "tccc_dose": "0.5-2 mg IV/IO",
+        "tccc_route": "IV/IO",
+        "tccc_2026_changes": "Restricted role: only for ketamine emergence phenomenon. Co-administration with ketamine NOT recommended otherwise. Should NOT be used with opioid analgesia (polypharmacy).",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "txa",
@@ -663,7 +778,28 @@ const DB = [
     ],
     "warnings": "3-HOUR WINDOW IS ABSOLUTE — after 3 hours from injury, TXA INCREASES mortality (CRASH-2). If time of injury unknown and >3h suspected, DO NOT GIVE. Contraindicated in active thromboembolic disease.",
     "notes": "R1/2 priority drug — ranks with tourniquet and airway management. Topical use from crushed tablets is field-expedient and evidence-supported.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 6.d — Tranexamic Acid",
+        "tccc_indication": "(1) Casualty likely to need blood transfusion (hemorrhagic shock, major amputation, penetrating torso trauma, severe bleeding) OR (2) Significant TBI / altered mental status from blast or blunt trauma",
+        "tccc_dose": "2 g via slow IV/IO push as soon as possible, NOT later than 3 hours after injury",
+        "tccc_route": "IV/IO push",
+        "tccc_2026_changes": "DOSE simplified to single 2g IV/IO push (replaces 1g+1g infusion). TBI/blast altered MS added as indication. 3-hour limit retained for IV/IO push administration.",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "calcium",
@@ -752,7 +888,28 @@ const DB = [
     ],
     "warnings": "Calcium CHLORIDE causes severe tissue necrosis with extravasation — CENTRAL LINE ONLY. Incompatible with sodium bicarbonate (precipitates). CaGluconate safer peripherally but requires hepatic metabolism.",
     "notes": "Ionized hypocalcemia is the most under-recognized coagulopathy in massive transfusion. During whole blood transfusion calcium replacement is essential.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 6.e.4.8 — Calcium with transfusion",
+        "tccc_indication": "After first transfused blood product",
+        "tccc_dose": "1 g IV/IO (30 mL of 10% calcium gluconate OR 10 mL of 10% calcium chloride)",
+        "tccc_route": "IV/IO",
+        "tccc_2026_changes": "Standard with blood transfusion protocol",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "hextend",
@@ -837,7 +994,28 @@ const DB = [
     ],
     "warnings": "Excessive crystalloid worsens coagulopathy, hypothermia, and abdominal compartment syndrome. TCCC standard: blood products FIRST, crystalloid only as bridge. Hextend max 1.5L (coagulopathy risk).",
     "notes": "Damage control resuscitation principle: each liter of crystalloid instead of blood dilutes clotting factors. The goal is 1:1:1 (pRBC:FFP:PLT) or whole blood.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 15.e — Burn Resuscitation",
+        "tccc_indication": "Burns >20% TBSA fluid resuscitation; if Hextend used in burns, no more than 1000 mL",
+        "tccc_dose": "USAISR Rule of Ten: %TBSA × 10 mL/hr (40-80 kg adults); +100 mL/hr per 10 kg above 80 kg",
+        "tccc_route": "IV/IO",
+        "tccc_2026_changes": "LR / NS / Hextend remain options; Hextend capped at 1000 mL in burns",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "succs",
@@ -922,7 +1100,12 @@ const DB = [
     ],
     "warnings": "NEVER give NMBAs without confirmed ability to intubate AND surgical airway backup. Succinylcholine causes fatal hyperkalemia in crush injuries, burns >24h, denervation injuries, prolonged immobilization. Use rocuronium in these patients.",
     "notes": "SOF standard: rocuronium 1.2 mg/kg + ketamine 2 mg/kg = hemodynamically stable RSI. Sugammadex is the safety net — CCATT must carry it.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "albuterol",
@@ -1012,7 +1195,12 @@ const DB = [
     ],
     "warnings": "High-dose hyperkalemia protocol causes tachycardia and tremor. NOT definitive K⁺ management — bridge only. Rebound hyperkalemia when effect wears off.",
     "notes": "CRITICAL R1/2 SKILL: High-dose nebulized albuterol (20 mg) for hyperkalemia requires NO IV access. Post-tourniquet release hyperkalemia is a real threat — know this protocol.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "naloxone",
@@ -1100,7 +1288,12 @@ const DB = [
     ],
     "warnings": "DURATION IS SHORTER THAN MOST OPIOIDS — re-sedation is EXPECTED. Plan for repeat dosing every 30–60 min or infusion during transport. Do not leave reversed casualty unmonitored.",
     "notes": "Intranasal 2–4 mg is now the standard pre-hospital route — no IV needed. CCATT critical skill: naloxone infusion during CASEVAC for long-acting opioid OD.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "epi",
@@ -1198,7 +1391,28 @@ const DB = [
     ],
     "warnings": "IM lateral thigh IS the correct first route for anaphylaxis — NOT IV. Undiluted IV push causes hypertensive crisis. Dilute to 1:10,000 (0.1 mg/mL) for IV use. Epinephrine has NO substitute for anaphylaxis.",
     "notes": "The #1 epinephrine error: giving IV instead of IM for anaphylaxis. IM is faster, safer, and more reliable. IV is only for refractory anaphylaxis with IV access established.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "Not directly TCCC TFC; cardiac arrest discussion in Section 17",
+        "tccc_indication": "Per ACLS standards (TCCC defers to ACLS for cardiac arrest in TACEVAC)",
+        "tccc_dose": "ACLS dosing — 1 mg IV/IO q3-5 min for cardiac arrest",
+        "tccc_route": "IV/IO/IM/IN",
+        "tccc_2026_changes": "TCCC 2026 emphasizes that field CPR for blast/penetrating trauma without signs of life will not be successful and should not be attempted; bilateral NDC mandatory before discontinuation in torso trauma/polytrauma cardiac arrest",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "vaso",
@@ -1271,7 +1485,12 @@ const DB = [
     ],
     "warnings": "Do not exceed 0.04 U/min in septic shock — mesenteric and digital ischemia. Not a first-line vasopressor — always combine with or add to norepinephrine.",
     "notes": "Key tactical teaching: vasopressin is the \"backup\" vasopressor when catecholamine receptors are exhausted. Prolongs survival in prolonged shock when NE alone is failing.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "amiodarone",
@@ -1352,7 +1571,12 @@ const DB = [
     ],
     "warnings": "QT prolongation — avoid with other QT-prolonging drugs. Hypotension with IV loading. Long-term: pulmonary toxicity, thyroid dysfunction, hepatotoxicity (not relevant for acute use).",
     "notes": "For acute/CASEVAC use, risk-benefit clearly favorable. The thyroid storm use is an elegant emergency application of the Wolff-Chaikoff effect.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "atropine",
@@ -1443,7 +1667,12 @@ const DB = [
     ],
     "warnings": "Do not use for infranodal (wide complex) bradycardia — may worsen. In organophosphate poisoning: may need massive doses (20–100 mg in severe cases). Never withhold atropine in nerve agent OD for fear of overdose.",
     "notes": "Nerve agent treatment: atropine dries secretions and prevents death from bronchospasm/secretions; 2-PAM regenerates cholinesterase. Both required. Atropine alone is insufficient for nerve agent OD.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "dex_steroid",
@@ -1548,7 +1777,12 @@ const DB = [
     ],
     "warnings": "Single dose is safe. Prolonged use: hyperglycemia, immunosuppression, avascular necrosis. NOT a substitute for epinephrine in anaphylaxis.",
     "notes": "High-altitude SOF missions: carry dexamethasone as HACE/HAPE treatment AND prevention. 8 mg PO day before ascent for HACE prophylaxis.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "mgso4",
@@ -1641,7 +1875,12 @@ const DB = [
     ],
     "warnings": "RESPIRATORY PARALYSIS at serum Mg >7 mEq/L. Monitor reflexes and RR. CALCIUM GLUCONATE (1g IV) is the antidote. Avoid in myasthenia gravis.",
     "notes": "Eclampsia: magnesium is irreplaceable — no benzodiazepine replicates its mechanism. SOF deployed to areas with maternal emergencies must carry magnesium.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "bicarb",
@@ -1738,7 +1977,12 @@ const DB = [
     ],
     "warnings": "TCA OD: QRS >100 ms → bicarbonate NOW, regardless of pH. Do NOT delay for blood gas result. Incompatible with calcium (precipitates). Hypernatremia and hyperosmolarity with excess dosing.",
     "notes": "TCA OD reflexive skill: QRS >100 ms after tricyclic ingestion → 1–2 mEq/kg bicarbonate immediately. This can be life-saving before CCATT level care is available.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "insulin",
@@ -1814,7 +2058,12 @@ const DB = [
     ],
     "warnings": "HYPOGLYCEMIA: glucose monitoring q30 min mandatory. HDIE requires simultaneous dextrose infusion — may need 200–500g/day. Do not start insulin if serum K⁺ <3.5 (DKA).",
     "notes": "Post-tourniquet hyperkalemia protocol: as soon as tourniquet is released in prolonged field care, have albuterol + insulin + calcium ready. K⁺ release from ischemic muscle can be lethal.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "doxy",
@@ -1912,7 +2161,12 @@ const DB = [
     ],
     "warnings": "Photosensitivity — critical in desert/tropical deployments. Take with food; esophageal ulceration without adequate water. Avoid in pregnancy and children <8 years.",
     "notes": "CBRN critical drug: doxycycline is the only antibiotic that covers BOTH bacterial CBRN agents (anthrax, plague, tularemia) AND Rickettsia/intracellular tick-borne fevers. Cannot be fully replaced.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "cipro",
@@ -2009,7 +2263,12 @@ const DB = [
     ],
     "warnings": "Tendon rupture (especially Achilles) — particularly with steroids. Avoid in children, pregnant. QT prolongation. Increasing fluoroquinolone resistance globally.",
     "notes": "Near 100% oral bioavailability means ciprofloxacin PO is equivalent to IV for systemic infections — critical in field/PFC settings where IV access is limited.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "lidocaine",
@@ -2106,7 +2365,28 @@ const DB = [
     ],
     "warnings": "Cardiac monitoring required for IV infusion >1.5 mg/kg/hr. CNS toxicity: circumoral numbness → seizures (classic progression). Bupivacaine is more cardiotoxic — use lipid emulsion for resuscitation.",
     "notes": "IO infusion pain is severely undertreated. 20 mg lidocaine IO bolus before flushing dramatically improves care — standard of practice in modern TCCC.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 4.f.4 — Surgical Cricothyroidotomy",
+        "tccc_indication": "Local anesthesia during surgical cricothyroidotomy in conscious casualty",
+        "tccc_dose": "Per provider judgment for local infiltration",
+        "tccc_route": "Local infiltration",
+        "tccc_2026_changes": "Use in surgical cric for conscious casualty",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "norepi",
@@ -2176,7 +2456,12 @@ const DB = [
     ],
     "warnings": "Central line REQUIRED — extravasation causes tissue necrosis. Phentolamine for extravasation rescue.",
     "notes": "CCATT carries NE as primary vasopressor for CASEVAC. Full hemodynamic monitoring (A-line, CVP) ideal during transport.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "heparin",
@@ -2256,7 +2541,12 @@ const DB = [
     ],
     "warnings": "Heparin-Induced Thrombocytopenia (HIT) — monitor platelets. Reversal: Protamine 1 mg per 100 units UFH. LMWH partially reversed by protamine (60%). Avoid in active hemorrhage.",
     "notes": "CCATT must balance anticoagulation for ACS/DVT/circuit patency against hemorrhage risk in polytrauma. UFH preferred for titrability and protamine reversibility during transport.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "propofol",
@@ -2328,7 +2618,12 @@ const DB = [
     ],
     "warnings": "PROPOFOL INFUSION SYNDROME (PRIS): >4 mg/kg/hr >48h → rhabdomyolysis, acidosis, cardiac failure. Monitor triglycerides. Lipid emulsion — infection control essential.",
     "notes": "CCATT PRIS protocol: if rate >4 mg/kg/hr needed, switch to ketamine+midazolam after 48h. Monitor CK, triglycerides, lactate.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "nac",
@@ -2412,7 +2707,12 @@ const DB = [
     ],
     "warnings": "IV loading for acetaminophen OD: 150 mg/kg over 60 min → 50 mg/kg over 4h → 100 mg/kg over 16h. Do not delay for acetylcysteine levels if Rumack-Matthew nomogram indicates treatment.",
     "notes": "IRI insight: same GSH/ROS mechanism that makes NAC work for acetaminophen OD is why it may protect against reperfusion injury after tourniquet release, resuscitation, or organ ischemia.",
-    "ev_overall": "moderate"
+    "ev_overall": "moderate",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "txa_oral",
@@ -2484,7 +2784,12 @@ const DB = [
     ],
     "warnings": "Same respiratory depression risk as IV fentanyl. Do NOT combine with other opioids or sedatives without airway monitoring. Only for casualties who are responsive and able to hold the lollipop.",
     "notes": "SOF principle: speed to analgesia. OTFC achieves analgesia in 5 min without IV setup, needle, or buddy medic. Security implications: wounded operator can remain alert while managing own pain.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "pralidoxime",
@@ -2554,7 +2859,12 @@ const DB = [
     ],
     "warnings": "TIME IS CRITICAL — aging (irreversible OP-cholinesterase binding) begins within minutes for some agents (soman = very fast aging). Give 2-PAM IMMEDIATELY with atropine. After aging, 2-PAM is ineffective.",
     "notes": "CBRN teaching: atropine + 2-PAM together. Atropine alone keeps the patient alive by blocking muscarinic effects. 2-PAM actually fixes the cholinesterase. Both required.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "apap",
@@ -2643,7 +2953,28 @@ const DB = [
     ],
     "warnings": "Hepatotoxicity at >4g/day or >3g/day in alcohol users. Check all acetaminophen sources to avoid inadvertent overdose.",
     "notes": "JTS Pain CPG \"analgesic triad\": acetaminophen 1g q6h + ketorolac 15-30mg q6h (max 5 days) + ketamine 0.1-0.3 mg/kg/hr = opioid-free protocol for moderate pain.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 11.a.2 — CWMP (Combat Wound Medication Pack)",
+        "tccc_indication": "Casualty mission-capable, can stay in fight",
+        "tccc_dose": "Acetaminophen 1000-1300 mg PO q8h (e.g., 2 × 650 mg ER caplets)",
+        "tccc_route": "PO",
+        "tccc_2026_changes": "CWMP triplet: APAP + Meloxicam + Suzetrigine (NEW)",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "ketorolac",
@@ -2729,7 +3060,12 @@ const DB = [
     ],
     "warnings": "MAXIMUM 5 DAYS. CONTRAINDICATED in hemorrhagic casualties, suspected internal bleeding, dehydration, AKI. Platelet inhibition lasts 24-48h after stopping.",
     "notes": "JTS CAUTION: contraindicated in penetrating torso trauma until hemorrhage definitively controlled. Safe for isolated extremity injuries after hemostasis achieved.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "meloxicam",
@@ -2803,7 +3139,28 @@ const DB = [
     ],
     "warnings": "Still has some platelet inhibition — avoid in active hemorrhage. GI risk less than ibuprofen but not zero. Renal vasoconstriction possible in dehydration.",
     "notes": "JTS Pain CPG preferred PO NSAID for combat setting: meloxicam 15 mg daily is simpler than ibuprofen TID and has less platelet effect.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 11.a.2 — CWMP",
+        "tccc_indication": "Casualty mission-capable, can stay in fight",
+        "tccc_dose": "Meloxicam 15 mg PO once a day",
+        "tccc_route": "PO",
+        "tccc_2026_changes": "CWMP component, daily dosing",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "ondansetron",
@@ -2892,7 +3249,28 @@ const DB = [
     ],
     "warnings": "QT prolongation at high doses — avoid with other QT-prolonging drugs. Serotonin syndrome risk with concurrent serotonergic drugs (rare at standard doses). ODT dissolves in 30 seconds sublingually.",
     "notes": "ODT (orally disintegrating tablet) form is tactically ideal — no water, works even in vomiting patient. Standard in JTS pain management CPG as antiemetic adjunct.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 11.c.8 — Anti-emetic",
+        "tccc_indication": "Nausea or vomiting in analgesia/sedation patients",
+        "tccc_dose": "4 mg ODT/IV/IO/IM every 8 hours PRN",
+        "tccc_route": "ODT / IV / IO / IM",
+        "tccc_2026_changes": "ODT route emphasized for field use",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "hydroxocobalamin",
@@ -2977,7 +3355,12 @@ const DB = [
     ],
     "warnings": "Turns skin/urine RED for 2-5 days — warn patient and staff. Incompatible with sodium thiosulfate in same IV line. Do NOT delay for CN blood levels — treat empirically in smoke inhalation.",
     "notes": "KEY ADVANTAGE over nitrite antidotes: safe with CO co-poisoning. Structure fires always produce both CN and CO. Hydroxocobalamin is the correct choice when CO exposure suspected.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "moxifloxacin",
@@ -3061,7 +3444,28 @@ const DB = [
     ],
     "warnings": "QT prolongation — avoid with amiodarone. No activity against Pseudomonas. Tendon rupture risk (class effect with fluoroquinolones). Avoid in pregnancy.",
     "notes": "JTS advantage over ciprofloxacin: anaerobic coverage. Single daily dose = huge tactical advantage in PFC. No renal dose adjustment needed.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "REMOVED — historical reference only",
+        "tccc_indication": "REMOVED FROM TCCC GUIDELINES 2026-05-01 (Change 25-1). Replaced by Cefadroxil 1g PO for ambulatory casualty.",
+        "tccc_dose": "—",
+        "tccc_route": "—",
+        "tccc_2026_changes": "REMOVED from TCCC. Use cefadroxil 1g PO daily (or cephalexin 500 mg q6h alternative). Retained in app for ophthalmic use and non-TCCC contexts (PFC complicated abdominal/pelvic infection where broader coverage needed).",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "ertapenem",
@@ -3145,7 +3549,28 @@ const DB = [
     ],
     "warnings": "Does NOT cover Pseudomonas — use meropenem/imipenem if Pseudomonas suspected (burns, ventilator-associated). Seizure risk with high doses or renal failure. Carbapenem-resistant organisms (CRE) — reserve for appropriate indications.",
     "notes": "Unique tactical advantage: only carbapenem available as once-daily IM. Allows broad-spectrum coverage in PFC without IV access. JTS CPG first-line for penetrating abdominal trauma antibiotic coverage.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "REMOVED — historical reference only",
+        "tccc_indication": "REMOVED FROM TCCC GUIDELINES 2026-05-01 (Change 25-1, Dec 2025). Replaced by Ceftriaxone 2g.",
+        "tccc_dose": "—",
+        "tccc_route": "—",
+        "tccc_2026_changes": "REMOVED. Use ceftriaxone 2g IV/IO/IM instead. Retained in app as historical reference and for non-TCCC contexts (austere medicine, complicated infections).",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "ceftriaxone",
@@ -3238,7 +3663,28 @@ const DB = [
     ],
     "warnings": "Biliary sludge with prolonged use. Do NOT mix with calcium-containing IV solutions (precipitation). Cross-reactivity with penicillin allergy (~1-2% true cross-reactivity).",
     "notes": "Biliary excretion = no dose adjustment in renal failure. Critical advantage in AKI patients. Most versatile single-agent antibiotic for deployed settings.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 12.c — Antibiotics IV/IO/IM (and Section 9 — Penetrating Eye Trauma)",
+        "tccc_indication": "Open combat wounds & invasive procedures, casualty unable to take PO (shock/unconsciousness); penetrating eye trauma",
+        "tccc_dose": "2 g IV/IO/IM once daily",
+        "tccc_route": "IV / IO / IM",
+        "tccc_2026_changes": "PRIMARY parenteral antibiotic in TCCC 2026 (replaced Ertapenem in Change 25-1)",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "azithromycin",
@@ -3323,7 +3769,12 @@ const DB = [
     ],
     "warnings": "QT prolongation — avoid with other QT-prolonging agents. Hepatotoxicity rare. Resistance increasing globally for many organisms. Drug interactions via CYP3A4.",
     "notes": "Anti-inflammatory mechanism is separate from antimicrobial — explains benefit in non-infectious inflammatory airway conditions. Long tissue half-life means 5-day tissue levels after 3-day course.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "flumazenil",
@@ -3397,7 +3848,12 @@ const DB = [
     ],
     "warnings": "Duration (30-60 min) SHORTER than most benzodiazepines — RE-SEDATION EXPECTED. Multiple doses or infusion may be required. Will precipitate acute withdrawal in BZD-dependent patients. Does NOT reverse opioids, barbiturates, or propofol.",
     "notes": "Mirror image of naloxone: diagnostic + reversal for its drug class. Same re-sedation vigilance required. Does NOT work for non-BZD sedatives.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "adenosine",
@@ -3472,7 +3928,12 @@ const DB = [
     ],
     "warnings": "Must give as RAPID IV push followed immediately by saline flush — half-life <10 seconds means slow push = ineffective. Causes transient chest tightness, flushing, dyspnea — warn patient. CONTRAINDICATED in 2nd/3rd degree AV block, sick sinus syndrome, WPW with wide complex.",
     "notes": "Rapid push technique is everything: adenosine 6 mg rapid push → immediate 20 mL NS flush → raise arm. Peripheral antecubital vein acceptable if central unavailable.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "dopamine",
@@ -3547,7 +4008,12 @@ const DB = [
     ],
     "warnings": "Higher arrhythmia risk than norepinephrine — particularly atrial fibrillation. Extravasation causes tissue necrosis. Renal-dose dopamine (2-3 mcg/kg/min) does NOT protect kidneys — largely abandoned.",
     "notes": "The \"renal dose\" concept (2-3 mcg/kg/min to protect kidneys) has been disproven — do not use for renal protection. Use for hemodynamic indications only.",
-    "ev_overall": "moderate"
+    "ev_overall": "moderate",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "lorazepam",
@@ -3631,7 +4097,12 @@ const DB = [
     ],
     "warnings": "Respiratory depression — particularly with opioids. Propylene glycol vehicle in IV formulation → toxicity with high-dose prolonged infusion. Accumulates in obesity and hepatic failure.",
     "notes": "IM lorazepam is as effective as IV for status epilepticus when given promptly (RAMPART trial). Tactical advantage: reliable IM absorption unlike diazepam.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "phenobarbital",
@@ -3711,7 +4182,12 @@ const DB = [
     ],
     "warnings": "Respiratory depression — intubation often required with loading dose. Hypotension during IV loading. Very long half-life means effects persist days. Drug interactions via CYP450 induction.",
     "notes": "Key difference from BZDs: direct GABA-A agonist vs allosteric modulator — explains efficacy when BZDs fail (downregulated receptors). Neonatal seizures: phenobarbital is first-line (not BZDs).",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "methoxyflurane",
@@ -3783,7 +4259,12 @@ const DB = [
     ],
     "warnings": "Limited to 6 mL per treatment episode. NOT for anesthetic doses (nephrotoxicity and hepatotoxicity at higher doses). Avoid in renal failure. Avoid in history of malignant hyperthermia.",
     "notes": "Not yet FDA-approved in US but used by Australian and UK military SOF. Self-limiting mechanism (patient drops inhaler if over-sedated) makes it uniquely safe for self-administration.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "whole_blood",
@@ -3868,7 +4349,28 @@ const DB = [
     ],
     "warnings": "Type and cross-match when possible. LTOWB is type O — use judiciously in female casualties of childbearing age (Rh sensitization). Warm ALL blood products. Calcium replacement MANDATORY with every 4 units.",
     "notes": "JTS current standard: LTOWB > 1:1:1 components > crystalloid. Never give crystalloid as primary resuscitation fluid in hemorrhagic shock. Each unit of whole blood = ~18 mmol citrate → calcium replacement critical.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 6.e.2 — Resuscitation Fluids of Choice",
+        "tccc_indication": "Hemorrhagic shock",
+        "tccc_dose": "Most preferred: Cold stored low titer O whole blood. Alternatives in order: pre-screened LTOWB; plasma:RBC:platelets 1:1:1; plasma:RBC 1:1; plasma OR RBCs alone",
+        "tccc_route": "IV/IO with battery-powered fluid warmer (38°C, up to 150 mL/min)",
+        "tccc_2026_changes": "Resuscitation hierarchy reaffirmed; calcium 1g after first unit",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "oxygen",
@@ -3959,7 +4461,12 @@ const DB = [
     ],
     "warnings": "HYPEROXIA is harmful in post-cardiac arrest (ROSC) and COPD — titrate to SpO2 94-98%, not 100%. O2 supports combustion — no open flames. Limited supply in field — conserve.",
     "notes": "CO poisoning: 100% O2 NRB is mandatory and urgent. SpO2 pulse oximetry is FALSELY NORMAL in CO poisoning — CO-oximetry required for accurate COHb measurement.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "ipratropium",
@@ -4044,7 +4551,12 @@ const DB = [
     ],
     "warnings": "Paradoxical bronchospasm rare but possible. Avoid in narrow-angle glaucoma (nebulized form can reach eyes). Urinary retention in BPH.",
     "notes": "Combination albuterol + ipratropium (Combivent/DuoNeb) is standard for COPD exacerbations. Different mechanism = additive effect without increased side effects.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "dextrose",
@@ -4134,7 +4646,12 @@ const DB = [
     ],
     "warnings": "D50W peripheral extravasation → severe tissue necrosis. Prefer D10W peripherally. ALWAYS give thiamine before dextrose in alcoholics/malnourished. Monitor glucose q30 min during insulin infusion.",
     "notes": "D10W vs D50W: equivalent efficacy for hypoglycemia (Moore & Woollard 2005 RCT — median 8 min to GCS 15 both groups), but D10W gives less rebound hyperglycemia and safer peripherally. D50W still preferred when speed is critical.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "diphenhydramine",
@@ -4224,7 +4741,12 @@ const DB = [
     ],
     "warnings": "CRITICAL: Diphenhydramine does NOT treat anaphylaxis — epinephrine FIRST always. Sedation impairs casualty assessment. Anticholinergic effects may mask tachycardia. Avoid in TBI (CNS depression).",
     "notes": "Anaphylaxis teaching point: H1 blocker + H2 blocker (ranitidine/famotidine) + dexamethasone + epinephrine = complete anaphylaxis protocol. Diphenhydramine is the H1 component only.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "haloperidol",
@@ -4308,7 +4830,12 @@ const DB = [
     ],
     "warnings": "QT prolongation — monitor ECG with IV use. EPS (extrapyramidal symptoms) and acute dystonia — have diphenhydramine ready. Do NOT combine olanzapine IM + lorazepam IM (fatal respiratory depression reported). NMS risk.",
     "notes": "B52 protocol: haloperidol 5 mg + midazolam 5 mg + promethazine 50 mg IM = rapid behavioral control in austere setting. Diphenhydramine 50 mg IV immediately reverses acute dystonic reaction.",
-    "ev_overall": "moderate"
+    "ev_overall": "moderate",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "levetiracetam",
@@ -4385,7 +4912,12 @@ const DB = [
     ],
     "warnings": "DRESS syndrome (drug reaction with eosinophilia and systemic symptoms) — rare but potentially fatal; FDA alert 2023. Behavioral side effects (aggression, irritability) in ~10%. Renal dose adjustment required.",
     "notes": "KEY advantage over phenytoin: no cardiac monitoring required, no enzyme induction, faster IV infusion, simpler pharmacokinetics. Now preferred second-line anticonvulsant in most guidelines.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "mannitol",
@@ -4462,7 +4994,12 @@ const DB = [
     ],
     "warnings": "Monitor serum osmolality q4-6h — STOP if >320 mOsm (rebound cerebral edema). MUST maintain euvolemia — hypotension worsens TBI. Contraindicated in anuria/severe renal failure. Crystallization at low temperatures — warm before use.",
     "notes": "Mannitol vs hypertonic saline for ICP: both effective; hypertonic saline preferred when patient is hypovolemic (no diuretic effect); mannitol preferred with adequate volume status. JTS CPG: mannitol 1g/kg for herniation.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "hypertonic_saline",
@@ -4539,7 +5076,28 @@ const DB = [
     ],
     "warnings": "23.4% NaCl — CENTRAL LINE REQUIRED (extreme osmolarity 8000 mOsm). Peripheral 3% NaCl acceptable. Hyponatremia correction — MAXIMUM 8-10 mEq/L per 24h; faster correction → osmotic demyelination syndrome (permanent neurological damage).",
     "notes": "Osmotic demyelination (central pontine myelinolysis) from over-rapid hyponatremia correction is IRREVERSIBLE. If Na⁺ correction >10 mEq/L in 24h detected — immediately STOP HTS and give free water or DDAVP to lower Na⁺.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 8.d — TBI Herniation",
+        "tccc_indication": "Cerebral herniation (asymmetric/fixed/dilated pupil(s) or posturing)",
+        "tccc_dose": "250 mL of 3% or 5% HTS OR 30 mL of 23.4% HTS IV/IO over ≥10 min, followed by saline flush. Repeat in 20 min if no response (max 2 doses).",
+        "tccc_route": "IV/IO",
+        "tccc_2026_changes": "TBI herniation protocol clarified. NOT for prophylaxis. NOT a resuscitative fluid. Monitor IV/IO site for extravasation.",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "vancomycin",
@@ -4627,7 +5185,12 @@ const DB = [
     ],
     "warnings": "Nephrotoxicity — monitor renal function and vancomycin AUC. \"Red man syndrome\" with rapid infusion — slow infusion over 60-90 min. AUC/MIC target 400-600 (NOT trough-based monitoring). Ototoxicity rare at therapeutic levels.",
     "notes": "PO vs IV distinction critical: PO vancomycin = C. diff treatment (NOT absorbed); IV vancomycin = systemic MRSA (NOT effective for C. diff). Common error to confuse these.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "metronidazole",
@@ -4715,7 +5278,12 @@ const DB = [
     ],
     "warnings": "Disulfiram-like reaction — NO alcohol during treatment and 48h after. Peripheral neuropathy with prolonged use. CNS toxicity (encephalopathy) at high doses. Teratogenic — avoid in first trimester.",
     "notes": "Metronidazole is irreplaceable for protozoal GI infections (Giardia, amebiasis) in deployed settings where these are common. No other standard formulary drug covers this gap.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "hydrocortisone",
@@ -4800,7 +5368,12 @@ const DB = [
     ],
     "warnings": "Do NOT confuse with dexamethasone — hydrocortisone provides mineralocorticoid effect dexamethasone lacks. Hyperglycemia with stress dosing. Immunosuppression. Do NOT abruptly stop chronic steroid therapy.",
     "notes": "Key distinction: dexamethasone = pure glucocorticoid (anti-inflammatory, anti-edema); hydrocortisone = glucocorticoid + mineralocorticoid (adrenal replacement). Different indications despite both being \"steroids\".",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "dexmedetomidine",
@@ -4880,7 +5453,12 @@ const DB = [
     ],
     "warnings": "Bradycardia and hypotension — particularly with loading dose. Do NOT use loading dose in hemodynamically unstable casualties. Rebound hypertension/tachycardia with abrupt discontinuation.",
     "notes": "Key advantage over propofol: no respiratory depression allows spontaneous breathing assessment. Key advantage over BZDs: less delirium, better neurological assessment. CCATT \"go-to\" for cooperative CASEVAC sedation.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "pantoprazole",
@@ -4955,7 +5533,12 @@ const DB = [
     ],
     "warnings": "Increased C. diff risk with prolonged use. Hypomagnesemia with long-term use. Drug interactions (clopidogrel — reduces antiplatelet effect). Do NOT use IV pantoprazole as routine prophylaxis in non-ventilated low-risk patients.",
     "notes": "JTS context: with ketorolac in kit, PPI should accompany it for use >3 days or in any GI-risk patient. IV pantoprazole for critically ill; PO omeprazole for ambulatory.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "phenylephrine",
@@ -5031,7 +5614,12 @@ const DB = [
     ],
     "warnings": "Reflex bradycardia — monitor HR. Avoid in cardiogenic shock (pure vasoconstriction increases afterload without inotropy). Tissue necrosis with extravasation. Renal/mesenteric vasoconstriction with high doses.",
     "notes": "Key tactical use: anesthesia hypotension during field surgery — phenylephrine 100-200 mcg IV bolus rapidly corrects spinal hypotension without cardiac effects. Phentolamine for extravasation.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "vitamin_k",
@@ -5106,7 +5694,12 @@ const DB = [
     ],
     "warnings": "PCC contains heparin — contraindicated in HIT. Thrombotic risk with PCC — use only for life-threatening hemorrhage. Vitamin K IV: anaphylactic reactions possible (rare) — give slowly over 20-30 min. Warfarin effect may return if PCC given without Vitamin K.",
     "notes": "Teaching point: PCC gives IMMEDIATE reversal (minutes) but effect wanes; Vitamin K takes 6-24h but provides DURABLE reversal. Always give both together for warfarin-related life-threatening hemorrhage.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "dantrolene",
@@ -5178,7 +5771,12 @@ const DB = [
     ],
     "warnings": "MUST HAVE dantrolene available whenever succinylcholine is used — MH is rapidly fatal without it. Each 20 mg vial requires 60 mL sterile water to reconstitute — labor intensive. Hepatotoxicity with chronic use.",
     "notes": "MH protocol: STOP triggering agent → dantrolene 2.5 mg/kg IV q5 min until resolved → active cooling → sodium bicarbonate for acidosis → hyperkalemia management → ICU transfer.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "etomidate",
@@ -5254,7 +5852,12 @@ const DB = [
     ],
     "warnings": "Single-dose adrenal suppression (6-24h cortisol inhibition) — clinical significance in septic shock debated; consider hydrocortisone cover. NOT an analgesic — must pair with fentanyl or ketamine for analgesia. NOT a controlled substance (logistics advantage).",
     "notes": "Jabre et al. RCT and meta-analysis: no significant difference in post-intubation hypotension between ketamine and etomidate. In trauma (non-septic), adrenal suppression clinical significance is minimal.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "furosemide",
@@ -5338,7 +5941,12 @@ const DB = [
     ],
     "warnings": "Hypokalemia — monitor K⁺; replace aggressively. Hypomagnesemia common. Ototoxicity with rapid high-dose IV (>4 mg/min). Contraindicated in sulfa allergy (cross-reactivity). Prerenal AKI with overdiuresis.",
     "notes": "DOSE trial (NEJM 2011): bolus vs continuous infusion equivalent efficacy; high-dose (2.5× oral dose) more effective than low-dose without significant renal harm. For ADHF: high-dose bolus is preferred.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "thiamine",
@@ -5417,7 +6025,12 @@ const DB = [
     ],
     "warnings": "IV thiamine is SAFE — no reason to delay dextrose for thiamine (VA study 2025). Give together. Anaphylaxis rare with IV thiamine — resuscitation equipment available. Thiamine injections may cause injection site reactions.",
     "notes": "Updated evidence: VA 10-year study (Jasti et al., Acad Emerg Med 2025) — WE from giving dextrose before thiamine is extremely rare. Do NOT delay hypoglycemia treatment for thiamine, but give both together whenever possible.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "glucagon",
@@ -5505,7 +6118,12 @@ const DB = [
     ],
     "warnings": "DOES NOT WORK if glycogen stores depleted (alcoholics, malnourished, prolonged fasting, liver failure) — use dextrose. Nausea/vomiting common. Rebound hypoglycemia after effect wears off — follow with oral carbohydrates.",
     "notes": "BB overdose dosing is 5-10× the hypoglycemia dose. Large doses required to overcome competitive antagonism. Expensive and short shelf life — but irreplaceable for BB/CCB OD when calcium + HDIE insufficient.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "labetalol",
@@ -5590,7 +6208,12 @@ const DB = [
     ],
     "warnings": "Labetalol CONTRAINDICATED in asthma/COPD, decompensated heart failure, 2nd/3rd degree AV block. Nicardipine: reflex tachycardia possible; avoid in acute heart failure with poor LV function.",
     "notes": "Target BP reduction: reduce MAP by max 25% in first hour → 160/100 over next 2-6h. Overly rapid reduction → cerebral, renal, coronary ischemia. Aortic dissection is the one exception — rapid aggressive reduction to SBP <120.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "piperacillin_tazo",
@@ -5665,7 +6288,12 @@ const DB = [
     ],
     "warnings": "\"Pip-tazo + vancomycin\" combination: increased AKI risk (nephrotoxicity) compared to meropenem + vancomycin — monitor renal function closely. Hypokalemia common. Seizures at very high doses.",
     "notes": "MERINO trial: pip-tazo inferior to meropenem for definitive treatment of ceftriaxone-resistant Enterobacteriaceae. Use pip-tazo empirically; escalate to meropenem if resistance confirmed.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "loperamide",
@@ -5740,7 +6368,12 @@ const DB = [
     ],
     "warnings": "DO NOT USE with fever or bloody diarrhea (Shiga toxin-producing E. coli, C. diff, invasive pathogens — may worsen by slowing toxin clearance). Toxic megacolon risk if used in colitis. Overdose at high doses may cross BBB in children.",
     "notes": "JTS guidance: loperamide for mild non-febrile non-bloody diarrhea; antibiotics (cipro/azithromycin) for moderate-severe, febrile, or bloody diarrhea. Never give both simultaneously — if sick enough for antibiotics, stop loperamide.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "dobutamine",
@@ -5820,7 +6453,12 @@ const DB = [
     ],
     "warnings": "Arrhythmogenic — dose-dependent tachycardia and ectopy. Does NOT improve mortality in ADHF. Hypotension possible (β2 vasodilation). Central line preferred. Do NOT use in hypertrophic obstructive cardiomyopathy.",
     "notes": "Cardiogenic shock protocol: norepinephrine (maintains MAP) + dobutamine (improves CO). NE alone increases afterload worsening cardiogenic physiology; combination addresses both.",
-    "ev_overall": "moderate"
+    "ev_overall": "moderate",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "protamine",
@@ -5896,7 +6534,12 @@ const DB = [
     ],
     "warnings": "Rapid IV administration → anaphylactoid reaction (hypotension, bradycardia, bronchospasm) — give SLOWLY over 10 min. Excessive protamine → paradoxical anticoagulation (protamine itself has weak anticoagulant activity). History of fish allergy or prior protamine exposure = increased anaphylaxis risk.",
     "notes": "Dosing caveat: if >30 min since heparin → reduce protamine dose (heparin cleared). Formula: protamine dose (mg) = heparin dose (units) × 0.01, adjusted for time elapsed.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "acyclovir",
@@ -5973,7 +6616,12 @@ const DB = [
     ],
     "warnings": "Nephrotoxicity — aggressive IV hydration required (1L NS before and after each dose). Crystalluria in dehydrated patients. Neurotoxicity (confusion, tremor) with high doses or renal failure. Renal dose adjustment essential.",
     "notes": "HSE teaching: IV acyclovir must be started EMPIRICALLY in any patient with unexplained encephalitis — do not wait for PCR. Delay in treatment dramatically worsens outcomes. Untreated HSE mortality >70%; treated <20%.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "nitroglycerin",
@@ -6058,7 +6706,12 @@ const DB = [
     ],
     "warnings": "CONTRAINDICATED: SBP <90 mmHg; RV infarction (preload-dependent); phosphodiesterase inhibitors (sildenafil/tadalafil — severe hypotension). NTG alone in aortic dissection → reflex tachycardia → worsens dissection. Always beta-blocker first.",
     "notes": "SCAPE protocol: IV NTG 1-2 mg bolus (much higher than standard ACS dose) rapidly relieves flash pulmonary edema. Tolerance develops with continuous infusion >12-24h — nitrate-free interval needed.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "artemether",
@@ -6138,7 +6791,12 @@ const DB = [
     ],
     "warnings": "Artemether-lumefantrine: take with food (fatty meal increases absorption 16-fold). QT prolongation — avoid with other QT-prolonging drugs. Mefloquine: CONTRAINDICATED in psychiatric history, seizures, cardiac conduction abnormalities; 9.6% US military have contraindications.",
     "notes": "Military malaria prophylaxis current preference: doxycycline 100 mg daily > mefloquine 250 mg weekly (neuropsychiatric side effects) > atovaquone-proguanil. For treatment of confirmed malaria: ACT (artemether-lumefantrine) is WHO/CDC standard.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "aspirin",
@@ -6226,7 +6884,12 @@ const DB = [
     ],
     "warnings": "Contraindicated in active bleeding, hemorrhagic stroke, aspirin allergy. AVOID in suspected hemorrhagic TBI — platelet inhibition worsens intracranial bleeding. Reye syndrome in children <18 with viral illness.",
     "notes": "ACS pearl: CHEW aspirin (do not swallow whole) — chewing provides 5× faster absorption and platelet inhibition vs swallowed tablet. This single point improves outcomes.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "ephedrine",
@@ -6302,7 +6965,12 @@ const DB = [
     ],
     "warnings": "Tachyphylaxis with repeated doses — norepinephrine stores depleted. Hypertension, tachycardia, arrhythmias. Avoid in hypertension, coronary artery disease, MAO inhibitor use (hypertensive crisis). CNS stimulation — insomnia, anxiety.",
     "notes": "Obstetric spinal anesthesia: phenylephrine now preferred over ephedrine (less fetal acidosis). For general surgical spinal hypotension: ephedrine remains useful due to combined α+β effects maintaining both BP and HR.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "clopidogrel",
@@ -6378,7 +7046,12 @@ const DB = [
     ],
     "warnings": "Bleeding risk — especially with dual antiplatelet. CYP2C19 poor metabolizers (25% of some populations) — reduced efficacy. CONTRAINDICATED in active bleeding, hemorrhagic stroke. Do NOT combine with PPIs (omeprazole reduces clopidogrel activation).",
     "notes": "CURE trial: clopidogrel + aspirin for NSTEMI — 20% relative risk reduction in CV death/MI/stroke. Military application: deployed personnel with known CAD on clopidogrel must continue — abrupt cessation → stent thrombosis within days.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "amoxicillin",
@@ -6463,7 +7136,12 @@ const DB = [
     ],
     "warnings": "Penicillin allergy: use doxycycline or clindamycin for dental infections. C. diff risk with prolonged use. GI side effects common — take with food. Maculopapular rash (not true allergy) common with EBV infection.",
     "notes": "Mission-critical insight: dental infections are the #1 cause of non-combat related medical evacuation in deployed forces. Amoxicillin-clavulanate in the kit prevents unnecessary MedEvac for dental abscess.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "clindamycin",
@@ -6551,7 +7229,12 @@ const DB = [
     ],
     "warnings": "C. DIFF RISK — high association with Clostridioides difficile colitis (one of highest-risk antibiotics). Stop immediately if diarrhea develops. Inducible clindamycin resistance in MRSA — check D-zone test before use.",
     "notes": "Toxin suppression mechanism: clindamycin inhibits ribosomal protein synthesis even at sub-MIC concentrations → reduces TSS toxin production. This is why clindamycin + beta-lactam > beta-lactam alone for necrotizing fasciitis.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "tranexamic_topical",
@@ -6632,7 +7315,28 @@ const DB = [
     ],
     "warnings": "MUST apply sustained direct pressure 3-5 min — kaolin works only with adequate pressure. Do NOT use in body cavities (thorax, abdomen) — not designed for internal use. Remove ALL hemostatic gauze at Role 2+ — residual gauze causes infection.",
     "notes": "TCCC hemorrhage control hierarchy: direct pressure → tourniquet (extremity) → hemostatic gauze + pressure (junctional) → junctional tourniquet device. Combat Gauze is CoTCCC-approved hemostatic agent of choice.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 3 — Massive Hemorrhage (Combat Gauze)",
+        "tccc_indication": "External hemorrhage not amenable to tourniquet, junctional bleeding, head/neck",
+        "tccc_dose": "Combat Gauze (CoTCCC primary). Alternatives: Celox Gauze, ChitoGauze, XStat (deep narrow tract), iTClamp",
+        "tccc_route": "Topical with ≥3 min direct pressure",
+        "tccc_2026_changes": "Combat Gauze remains CoTCCC primary; alternatives clarified; XStat for deep narrow tracts; iTClamp for re-approximable head/neck wounds (do not place within 1cm of orbit)",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "ibuprofen",
@@ -6708,7 +7412,12 @@ const DB = [
     ],
     "warnings": "Platelet inhibition (reversible — clears with drug). GI bleeding risk. Renal vasoconstriction in dehydration. Avoid in active hemorrhage. Less preferred than meloxicam in tactical setting due to QID dosing.",
     "notes": "Ibuprofen vs meloxicam in the field: ibuprofen is more widely available globally but requires QID dosing; meloxicam once daily is preferred when available. Both COX-1/2 — similar GI and platelet risks.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "ondansetron_iv",
@@ -6784,7 +7493,28 @@ const DB = [
     ],
     "warnings": "NEVER give IV promethazine (severe tissue necrosis/gangrene — FDA Black Box Warning). IM only. TBI: avoid (CNS depression impairs neurological assessment). Extrapyramidal reactions — diphenhydramine reversal.",
     "notes": "IV promethazine is absolutely contraindicated — multiple cases of limb amputation from IV extravasation. IM only. \"B52\" combination is standard SOF behavioral emergency protocol.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 11.c.8 — Anti-emetic (note: this entry currently labeled Promethazine)",
+        "tccc_indication": "Nausea/vomiting (note: TCCC 2026 specifies ondansetron, not promethazine, as first-line)",
+        "tccc_dose": "Ondansetron 4 mg ODT/IV/IO/IM q8h PRN",
+        "tccc_route": "ODT / IV / IO / IM",
+        "tccc_2026_changes": "TCCC 2026 specifies ondansetron. Promethazine is alternative agent, not TCCC-listed.",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "milrinone",
@@ -6856,7 +7586,12 @@ const DB = [
     ],
     "warnings": "Hypotension — dose-limiting; reduce if MAP falls. Arrhythmogenic. No reversal agent. Long half-life (2-3h) → slow offset. Renal dose adjustment required. Contraindicated in hypertrophic obstructive cardiomyopathy.",
     "notes": "KEY advantage over dobutamine: bypasses β-receptors → works in beta-blocker toxicity and receptor downregulation. DOREMI trial confirmed equivalence for cardiogenic shock — use milrinone when pulmonary HTN or BB OD concern.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "doac_reversal",
@@ -6932,7 +7667,12 @@ const DB = [
     ],
     "warnings": "Idarucizumab: thrombotic events 4.8% at 30 days (restart anticoagulation ASAP when safe). Andexanet: infusion reactions 18%; anti-Xa returns to baseline ~2h after infusion ends (monitor for rebound). Both extremely expensive.",
     "notes": "Drug-specific matching: dabigatran (Pradaxa) → idarucizumab; apixaban (Eliquis)/rivaroxaban (Xarelto) → andexanet alfa. If agent unknown: 4F-PCC as bridge. ISTH 2024: specific agents preferred over PCC when available.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "cryoprecipitate",
@@ -7015,7 +7755,12 @@ const DB = [
     ],
     "warnings": "ABO compatibility preferred but not required for cryoprecipitate. Infection risk (blood product). Thaw takes 20-30 min — order early. Must use within 4-6h of thawing. Each unit from one donor — pooled 10-unit bags from multiple donors.",
     "notes": "JTS massive transfusion: when fibrinogen <150 mg/dL or TEG shows fibrinogen deficit → give cryoprecipitate 10 units (or fibrinogen concentrate 4g). Fibrinogen is the rate-limiting factor in clot formation.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "primaquine",
@@ -7087,7 +7832,12 @@ const DB = [
     ],
     "warnings": "G6PD TESTING MANDATORY before primaquine — G6PD deficiency causes life-threatening hemolytic anemia. Contraindicated in pregnancy (fetal G6PD unknown). Common in African, Mediterranean, Southeast Asian personnel (up to 25% prevalence).",
     "notes": "Afghanistan deployment: P. vivax is primary malaria species. Without primaquine radical cure, returning personnel relapse months after homecoming. All P. vivax cases must receive primaquine after G6PD screening.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "silver_sulfadiazine",
@@ -7168,7 +7918,12 @@ const DB = [
     ],
     "warnings": "Sulfonamide allergy contraindication. Leukopenia with extensive application (silver absorption). Do NOT use on face (argyria risk). Avoid near eyes. Neonates and premature infants: risk of kernicterus.",
     "notes": "JTS burn CPG: early wound coverage within hours of injury. Silver sulfadiazine is standard; newer agents (silver-containing dressings) may be superior for some wound types but less available in deployed settings.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "colchicine",
@@ -7252,7 +8007,12 @@ const DB = [
     ],
     "warnings": "Narrow therapeutic window — GI toxicity (diarrhea) approaches therapeutic doses. Renal/hepatic dose reduction. Severe toxicity with CYP3A4 inhibitors (clarithromycin, ketoconazole — use together with extreme caution). Bone marrow suppression with high doses.",
     "notes": "Pericarditis teaching: aspirin + colchicine is the gold standard. Steroids for pericarditis INCREASE recurrence (COPE trial) — avoid unless absolutely necessary (allergy, NSAIDs CI).",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "esmolol",
@@ -7336,7 +8096,12 @@ const DB = [
     ],
     "warnings": "Contraindicated in cardiogenic shock, severe bradycardia, 2nd/3rd degree AV block, severe asthma. Hypotension is managed by dose reduction or stopping infusion. Concentrated solution — dilute properly.",
     "notes": "Esmolol unique tactical advantage: 9-min half-life means if patient deteriorates from β-blockade, simply stop infusion — fully reversible in 20-30 min. No other β-blocker offers this reversibility.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "fentanyl_in",
@@ -7415,7 +8180,12 @@ const DB = [
     ],
     "warnings": "Respiratory depression same as IV — have naloxone and BVM ready. Duration 30-60 min — repeat dosing needed. Bioavailability affected by nasal congestion. MAX 1 mL per nostril (400-800 mcg per dose).",
     "notes": "MAD atomizer technique: divide dose — 50% per nostril; tilt head back 30°; direct to lateral nasal wall (not septum). IN fentanyl RCTs demonstrate equivalence to IV morphine for acute pain — routine R1/2 skill.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "rocuronium_sug",
@@ -7491,7 +8261,12 @@ const DB = [
     ],
     "warnings": "MUST carry sugammadex whenever rocuronium is used — no exceptions. Cost is high but irreplaceable for CICO rescue. Does NOT reverse succinylcholine. Hypersensitivity reactions rare but possible.",
     "notes": "SOF RSI teaching: rocuronium RSI without sugammadex availability is UNSAFE. Sugammadex is the safety net that makes rocuronium RSI safe in austere settings. 16 mg/kg = immediate reversal — have it drawn up.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "morphine_iv",
@@ -7563,7 +8338,12 @@ const DB = [
     ],
     "warnings": "Avoid in renal failure (M6G accumulation → prolonged sedation/respiratory depression). Histamine release → avoid in reactive airway. Always have naloxone immediately available. Respiratory depression monitoring mandatory.",
     "notes": "CASEVAC PCA protocol: morphine 1mg bolus q10min (lockout), continuous 2mg/hr background for ventilated casualty. Fentanyl preferred over morphine in AKI (no active metabolite accumulation).",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "tmp_smx",
@@ -7649,7 +8429,12 @@ const DB = [
     ],
     "warnings": "Sulfonamide allergy contraindication. Hyperkalemia (blocks K+ secretion — especially with ACE inhibitor or renal disease). Bone marrow suppression. Nephrotoxicity at high IV doses. Stevens-Johnson syndrome risk (rare).",
     "notes": "Stenotrophomonas pearl: when ICU casualty has MDR gram-negative with pan-resistance — check TMP-SMX. May be the only active agent. Critical knowledge for deployed Role 3/CCATT.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "fosphenytoin",
@@ -7726,7 +8511,12 @@ const DB = [
     ],
     "warnings": "Cardiac monitoring MANDATORY during IV loading — hypotension and arrhythmias. Max rate 50 mg/min (phenytoin) or 150 mg PE/min (fosphenytoin). Purple glove syndrome with phenytoin extravasation. CRITICAL: phenytoin induces CYP3A4 — REDUCES artemether-lumefantrine and apixaban/rivaroxaban efficacy.",
     "notes": "CRITICAL DRUG INTERACTION: phenytoin/fosphenytoin REDUCES artemether-lumefantrine (Coartem) efficacy via CYP3A4 induction — CONTRAINDICATED combination. Use levetiracetam for TBI seizure prophylaxis in malaria-endemic deployments.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "valproate_iv",
@@ -7802,7 +8592,12 @@ const DB = [
     ],
     "warnings": "HEPATOTOXICITY — potentially fatal, especially in children under 2. TERATOGENIC — neural tube defects; avoid in women of childbearing potential without contraception. Pancreatitis. Thrombocytopenia. Many drug interactions.",
     "notes": "Valproate SE advantage: highest second-line efficacy in meta-analysis + no cardiac monitoring + no enzyme induction = preferred over phenytoin in many protocols. Absolute contraindication in pregnancy.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "nitroprusside",
@@ -7874,7 +8669,12 @@ const DB = [
     ],
     "warnings": "CYANIDE TOXICITY with prolonged use or high doses (>2 mcg/kg/min >24h) especially in renal failure — signs: metabolic acidosis, elevated lactate. Antidote: hydroxocobalamin. Requires ARTERIAL LINE — peripheral BP monitoring inadequate. Light-sensitive — wrap infusion bag in foil.",
     "notes": "Nitroprusside CN toxicity: metabolized to CN → converted to thiocyanate by hepatic rhodanese. Thiocyanate accumulates in renal failure → CN toxicity. Hydroxocobalamin is the antidote. Nicardipine preferred to avoid this risk when adequate.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "aminophylline",
@@ -7950,7 +8750,12 @@ const DB = [
     ],
     "warnings": "NARROW THERAPEUTIC WINDOW — toxicity at >20 mcg/mL: seizures, arrhythmias, death. Multiple drug interactions (ciprofloxacin and erythromycin DOUBLE theophylline levels). Loading dose only if NOT on chronic theophylline. Cardiac monitoring during IV loading.",
     "notes": "Cardiac transplant pearl: atropine is INEFFECTIVE in denervated transplant heart. Aminophylline is the correct drug. CCATT teams transporting post-transplant casualties must have this knowledge — giving atropine wastes time.",
-    "ev_overall": "moderate"
+    "ev_overall": "moderate",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "atovaquone_proguanil",
@@ -8025,7 +8830,12 @@ const DB = [
     ],
     "warnings": "Take with food — fatty meal increases absorption 3x; without food bioavailability severely reduced. Cannot eradicate P. vivax/ovale hypnozoites — add primaquine for radical cure. Renal insufficiency: avoid if CrCl <30 mL/min. Expensive vs doxycycline.",
     "notes": "Military prophylaxis decision tree: doxycycline (cheapest, broadest) > atovaquone-proguanil (no neuropsychiatric, flexible start) > mefloquine (weekly, but 9.6% contraindication rate). Atovaquone-proguanil preferred for personnel with psychiatric history or short-notice deployment.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "ors_electrolyte",
@@ -8106,7 +8916,12 @@ const DB = [
     ],
     "warnings": "NOT for heat STROKE (altered mental status) — IV fluids and active cooling required. NOT for severe dehydration with vomiting. Plain water WITHOUT electrolytes can worsen hyponatremia in heat illness — always use ORS or add electrolytes.",
     "notes": "WHO ORS formula: glucose 13.5 g/L + NaCl 2.6 g/L + KCl 1.5 g/L + sodium citrate 2.9 g/L. Field improvised: 1L clean water + 6 tsp sugar + half tsp salt = approximate ORS. Better than plain IV saline for mild-moderate dehydration.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "diazepam",
@@ -8193,7 +9008,12 @@ const DB = [
     ],
     "warnings": "Erratic IM absorption — do NOT use IM diazepam for acute seizures (use midazolam IM instead). Very long half-life → accumulation in elderly and hepatic failure. Respiratory depression with opioids. Paradoxical agitation in elderly.",
     "notes": "Tetanus teaching: BZDs are the cornerstone of tetanus spasm management. Doses of 10-40 mg/hr diazepam infusion may be needed for severe tetanus. Deployed tropical areas with poor vaccination coverage — tetanus is a real threat.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "txA_tbi",
@@ -8283,7 +9103,28 @@ const DB = [
     ],
     "warnings": "CRITICAL 3-HOUR WINDOW for both hemorrhagic shock AND TBI — after 3h from injury TXA may increase mortality (CRASH-2 subgroup analysis). Rule: any significant trauma with hemorrhage OR TBI within 3h → TXA 1g IV/IO.",
     "notes": "TXA dual-indication: TCCC now supports TXA for BOTH hemorrhagic shock AND TBI. Field medic rule: significant trauma + hemorrhage OR TBI + within 3h = give TXA. The only two questions are mechanism and time.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 6.d — TXA (TBI indication)",
+        "tccc_indication": "Significant TBI or altered mental status associated with blast injury or blunt trauma",
+        "tccc_dose": "2 g via slow IV/IO push as soon as possible, NOT later than 3 hours after injury",
+        "tccc_route": "IV/IO push",
+        "tccc_2026_changes": "TBI now formally listed as TXA indication in TCCC 2026. Same 2g dose as trauma TXA.",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "zinc_vitC",
@@ -8355,7 +9196,12 @@ const DB = [
     ],
     "warnings": "Zinc excess over 40 mg/day causes copper deficiency (neurological complications with prolonged high-dose zinc). Vitamin C over 2g/day causes oxalate kidney stones in predisposed individuals. Iron absorption reduced by zinc supplementation.",
     "notes": "PFC nutrition teaching: after 72h of field care, micronutrients become clinically relevant for wound healing. Zinc + Vitamin C are most evidence-supported. Simple, cheap, and available in most field medical kits.",
-    "ev_overall": "moderate"
+    "ev_overall": "moderate",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "vasopressin_ext",
@@ -8439,7 +9285,12 @@ const DB = [
     ],
     "warnings": "Coronary vasoconstriction — use with caution in known CAD. Mesenteric ischemia with high doses. Hyponatremia with excessive V2 stimulation. Not titratable like norepinephrine for BP management alone.",
     "notes": "DI after TBI or pituitary surgery: urine output >250 mL/hr + rising serum sodium = central DI. Desmopressin 1-4 mcg IV/SQ preferred over vasopressin for DI (pure V2 effect, no hemodynamic changes).",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "desmopressin",
@@ -8522,7 +9373,12 @@ const DB = [
     ],
     "warnings": "Hyponatremia with repeat dosing — monitor serum Na after each dose; hold if Na <130. Tachyphylaxis with repeated dosing (vWF/FVIII stores depleted after 2-3 doses — wait 24-48h). Avoid in severe CAD (V2-mediated thrombus risk).",
     "notes": "DI post-TBI rule: urine output >250 mL/hr + urine specific gravity <1.005 + rising serum Na = central DI → desmopressin 1 mcg IV/SQ. Do NOT give plain water or hypotonic fluids without desmopressin — will not correct central DI.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "norepinephrine_ext",
@@ -8607,7 +9463,12 @@ const DB = [
     ],
     "warnings": "Tissue necrosis with extravasation — treat immediately with phentolamine 5 mg in 10 mL NS infiltrated into area. Reflex bradycardia at high doses. Mesenteric ischemia with prolonged high-dose use. Peripheral IV: monitor every 30 min for extravasation.",
     "notes": "NE extravasation antidote: phentolamine 5-10 mg in 10 mL NS injected into extravasated area within 12h reverses necrosis. Every provider using peripheral NE must know this — prevention and treatment.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "cefazolin",
@@ -8693,7 +9554,12 @@ const DB = [
     ],
     "warnings": "Cross-reactivity with penicillin allergy: ~1% if rash history, ~0.01% if no history. If history of anaphylaxis to penicillin: use vancomycin instead. Renal dose adjustment required. C. diff risk lower than broader antibiotics.",
     "notes": "Surgical prophylaxis teaching: cefazolin 2g IV within 60 min before incision — not earlier, not after. Redose every 4h for prolonged surgery. MRSA-endemic facility: add vancomycin. Obese patients (>120 kg): 3g dose.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "adenosine_ext",
@@ -8769,7 +9635,12 @@ const DB = [
     ],
     "warnings": "MUST give as rapid IV push (1-2 sec) + immediate 20 mL flush — slow infusion is ineffective (10-sec half-life). CONTRAINDICATED in WPW with atrial fibrillation (irregular wide-complex) — may accelerate conduction via accessory pathway → VF. Asthma: causes bronchospasm — use verapamil instead. Patients on dipyridamole: reduce dose to 3 mg.",
     "notes": "Adenosine technique is everything: rapid push into large antecubital or central line immediately followed by 20 mL saline bolus. Patients should be warned of transient flushing, chest tightness, and sense of doom (brief, 20-30 sec). Have crash cart ready.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "potassium_replacement",
@@ -8853,7 +9724,12 @@ const DB = [
     ],
     "warnings": "NEVER give K+ IV push or rapid IV bolus — fatal cardiac arrhythmias. Max rate KCl: 10-20 mEq/hr peripheral, 40 mEq/hr central with monitoring. K+ concentration max 80 mEq/L peripheral. ALWAYS replace Mg simultaneously with K+ replacement.",
     "notes": "Rule: always replace Mg2+ before or with K+ in any serious hypokalemia. You cannot adequately replace K+ with concurrent hypomagnesemia — Na/K-ATPase is Mg-dependent and will not work without it.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "succinylcholine",
@@ -8929,7 +9805,12 @@ const DB = [
     ],
     "warnings": "HYPERKALEMIA CONTRAINDICATIONS: burns >24-72h post-injury, spinal cord injury, stroke, prolonged immobilization, denervation, crush injury >72h — upregulated extrajunctional AChRs cause massive K+ release → fatal cardiac arrest. Safe within FIRST 24h of injury. Malignant hyperthermia trigger. Pseudocholinesterase deficiency → hours-long paralysis. FDA Black Box: do NOT use in children except emergency airway.",
     "notes": "Succinylcholine vs rocuronium decision: use succinylcholine when (1) crash airway with no time, (2) no CICO concern, (3) no hyperkalemia risk factors, (4) sugammadex unavailable. Use rocuronium when (1) CICO risk exists, (2) hyperkalemia risk, (3) sugammadex available. If rocuronium without sugammadex — you CANNOT safely rescue a failed airway.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "methylene_blue",
@@ -9014,7 +9895,12 @@ const DB = [
     ],
     "warnings": "CONTRAINDICATED in G6PD deficiency — causes hemolytic anemia (paradoxically cannot reduce methemoglobin either without G6PD). Serotonin syndrome risk when combined with serotonergic drugs (SSRIs, MAOIs, linezolid). Colors urine/skin blue — warn patient. High doses (>4 mg/kg) paradoxically CAUSE methemoglobinemia.",
     "notes": "Dapsone-malaria prophylaxis connection: some deployed personnel use dapsone + pyrimethamine for malaria. G6PD-deficient individuals develop methemoglobinemia from dapsone — AND cannot receive methylene blue. Screen G6PD before prescribing dapsone.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "haloperidol_ext",
@@ -9099,7 +9985,12 @@ const DB = [
     ],
     "warnings": "QTc prolongation (monitor, but MIND-USA: safe up to QTc 550 ms). Extrapyramidal reactions (dystonia, akathisia) — treat with diphenhydramine 25-50 mg IV. Neuroleptic malignant syndrome (rare but life-threatening: hyperthermia + rigidity + autonomic instability). Do NOT combine IM haloperidol with IV promethazine (extravasation risk).",
     "notes": "ICU delirium evidence update: haloperidol does NOT reduce delirium-free days (AID-ICU 2022, MIND-USA 2018) — but does reduce agitation, benzodiazepine use, and intrusive memories (EuRIDICE 2023). Use for agitation control, not as delirium cure.",
-    "ev_overall": "moderate"
+    "ev_overall": "moderate",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "vecuronium",
@@ -9175,7 +10066,12 @@ const DB = [
     ],
     "warnings": "CANNOT reverse without neostigmine+glycopyrrolate or sugammadex. Rocuronium CICO without sugammadex = patient dies from paralysis — NEVER use rocuronium without sugammadex available. Train-of-four monitoring for prolonged ICU paralysis. Prolonged paralysis → ICU-acquired weakness.",
     "notes": "Rocuronium-sugammadex system: rocuronium for RSI + sugammadex 16 mg/kg immediately available = safest RSI system. Combines fast onset with guaranteed reversibility. The only system that makes CICO fully recoverable.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "voriconazole",
@@ -9250,7 +10146,12 @@ const DB = [
     ],
     "warnings": "Visual disturbances common (photopsia, blurred vision — usually transient). Phototoxicity — deployed personnel in intense sun at risk. Hepatotoxicity — monitor LFTs. QTc prolongation. MASSIVE CYP2C19/3A4 drug interactions (reduces efficacy of artemether-lumefantrine, phenytoin, rifampin). Therapeutic drug monitoring (TDM) recommended.",
     "notes": "Military deployment relevance: immunocompromised deployed personnel (HIV, steroid-dependent, post-transplant) in tropical environments face Aspergillus and Fusarium risk. Voriconazole must be available at Role 3 and CCATT level. TDM target: 1-5.5 mcg/mL trough.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "activated_charcoal",
@@ -9336,7 +10237,12 @@ const DB = [
     ],
     "warnings": "CONTRAINDICATED in: unprotected airway (aspiration risk — intubate first), decreased GI motility/obstruction, caustic ingestion. Does NOT absorb: iron, lithium, alcohols, simple electrolytes, cyanide. Do NOT give with sorbitol (severe electrolyte disturbances). Aspiration pneumonitis is the major risk — protect airway first.",
     "notes": "1-hour rule: most effective within 1h of ingestion, but STILL beneficial at 2-4h for slow-absorbing drugs (aspirin, extended-release formulations). Rule: if airway is protected and no contraindication, give charcoal for any significant oral overdose within 2h — judgment call beyond 2h.",
-    "ev_overall": "moderate"
+    "ev_overall": "moderate",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "ciprofloxacin_ext",
@@ -9425,7 +10331,12 @@ const DB = [
     ],
     "warnings": "Tendinopathy and tendon rupture (especially Achilles in >60 years or steroid users). QTc prolongation. Doubles theophylline and caffeine levels (drug interaction). Peripheral neuropathy. Avoid in growing children (<18) except life-threatening indications (anthrax). Fluoroquinolone-resistant gram-negatives increasing.",
     "notes": "Anthrax PEP teaching: 60-day course required because anthrax spores can germinate late in alveolar macrophages. Shorter courses fail. Deployed personnel must complete full 60-day course even if asymptomatic. Switching to doxycycline after culture sensitivity acceptable.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "phentolamine",
@@ -9510,7 +10421,12 @@ const DB = [
     ],
     "warnings": "Hypotension — have fluid bolus ready. Reflex tachycardia. Myocardial infarction trigger in CAD patients (demand increase from tachycardia). CRITICAL: peripheral vasopressor protocol — every unit administering peripheral NE must have phentolamine immediately available and staff trained in extravasation recognition.",
     "notes": "NE extravasation protocol: check site every 30 minutes during peripheral NE infusion. Signs: pain, pallor, blanching, skin hardness at IV site. Treatment: STOP infusion, leave catheter in place, inject phentolamine 5-10 mg diluted in 10-15 mL NS through catheter and around site. Time-sensitive: treat within 12h.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "naloxone_ext",
@@ -9598,7 +10514,12 @@ const DB = [
     ],
     "warnings": "SHORT HALF-LIFE (30-80 min) — SHORTER than most opioids. Patient can re-narcotize after apparent recovery. Must monitor for minimum 4-6h after reversal. Precipitates acute opioid withdrawal in dependent patients — use titrated dosing. High doses in opioid-dependent patients → agitation, vomiting, pulmonary edema, cardiac dysrhythmias.",
     "notes": "TCCC opioid protocol: ketamine preferred for pain management to reduce opioid use. When opioids used: naloxone immediately available. Field naloxone: IN delivery 2 mg via MAD or IM 0.4-2 mg. Re-narcotization monitoring is mandatory — the reversal is not the end of care.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "calcium_gluconate",
@@ -9688,7 +10609,28 @@ const DB = [
     ],
     "warnings": "Calcium chloride causes tissue necrosis if extravasates — use central line or large peripheral vein. Calcium gluconate safer peripherally. NEVER give calcium IV with bicarbonate (precipitates as calcium carbonate). In digoxin toxicity: calcium administration is CONTROVERSIAL (may worsen dysrhythmias) — proceed with extreme caution.",
     "notes": "CaCl vs CaGluc teaching: calcium chloride provides 3x more ionized calcium per gram than gluconate — use CaCl for life-threatening emergencies (CCB OD, cardiac arrest). Use calcium gluconate for routine MTP/hyperkalemia management where central access unavailable.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 6.e.4.8 — Calcium with transfusion",
+        "tccc_indication": "After first transfused blood product",
+        "tccc_dose": "30 mL of 10% calcium gluconate IV/IO (= 1g calcium)",
+        "tccc_route": "IV/IO",
+        "tccc_2026_changes": "Standard with blood transfusion protocol",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "source_tier": "A"
+    }
   },
   {
     "id": "sodium_bicarb",
@@ -9774,7 +10716,12 @@ const DB = [
     ],
     "warnings": "Hypernatremia and hypertonicity with large doses. Paradoxical intracellular acidosis (CO2 produced crosses cell membrane). Do NOT use for routine metabolic acidosis management in sepsis (no outcome benefit). Calcium precipitation — NEVER mix with calcium-containing solutions.",
     "notes": "TCA OD teaching: any TCA ingestion with QRS >100ms is a medical emergency. Bicarb 1-2 mEq/kg IV bolus immediately, then infusion to maintain pH 7.45-7.55. Continuous ECG monitoring — QRS should narrow within minutes of appropriate bicarb dosing.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "hydrocortisone_stress",
@@ -9859,7 +10806,12 @@ const DB = [
     ],
     "warnings": "NOT for routine septic shock treatment (ADRENAL trial: no mortality benefit). Hyperglycemia — monitor glucose closely. Increased infection risk with prolonged high-dose steroids. Psychiatric effects (mania, psychosis). Taper required after prolonged use to prevent adrenal crisis on withdrawal.",
     "notes": "Adrenal crisis pearls: (1) Think adrenal crisis in any patient with refractory hypotension on steroids or with pituitary/adrenal pathology. (2) Hydrocortisone (not dexamethasone) for adrenal crisis — need both glucocorticoid AND mineralocorticoid. (3) Give hydrocortisone first, test cortisol levels later.",
-    "ev_overall": "moderate"
+    "ev_overall": "moderate",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "octreotide",
@@ -9944,7 +10896,12 @@ const DB = [
     ],
     "warnings": "Hyperglycemia or hypoglycemia possible (complex hormonal effects — monitor glucose). Cholelithiasis with long-term use. Bradycardia. QTc prolongation. GI side effects (nausea, abdominal cramping). Rapid IV administration may cause cardiac effects — give bolus slowly over 3 min.",
     "notes": "Sulfonylurea OD teaching: dextrose alone is insufficient. Sulfonylurea OD requires octreotide to stop the insulin release that keeps causing hypoglycemia. Without octreotide, patient requires continuous dextrose infusion and ICU monitoring. With octreotide: glucose stabilizes and monitoring duration dramatically reduced.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
   },
   {
     "id": "doxycycline_ext",
@@ -10034,9 +10991,345 @@ const DB = [
     ],
     "warnings": "Photosensitivity — severe sunburn risk in deployed tropical sun; use sunscreen. Esophageal irritation — take with full glass of water and remain upright 30 min. Avoid in pregnancy and children <8 years (teeth staining, bone growth). Take 2h before or 6h after calcium/antacids (chelation reduces absorption). Tooth discoloration historical concern with prolonged pediatric use.",
     "notes": "RMSF teaching: doxycycline is safe in ALL ages for RMSF (including children <8 years when life-threatening) — the benefit far outweighs cosmetic tooth risk. Do NOT use alternative antibiotics for suspected RMSF — chloramphenicol is the only alternative and is inferior. Empiric treatment saves lives.",
-    "ev_overall": "strong"
+    "ev_overall": "strong",
+    "sources": [],
+    "validation": {
+      "tccc_2026_validated": false,
+      "source_tier": "pending_validation"
+    }
+  },
+  {
+    "id": "cefadroxil",
+    "name": "Cefadroxil (Duricef)",
+    "icon": "💊",
+    "cat": "abx",
+    "levels": [
+      "r12",
+      "sof",
+      "ccatt"
+    ],
+    "drug_class": "First-generation oral cephalosporin",
+    "primary_use": "PO antibiotic prophylaxis for open combat wounds (TCCC 2026 first-line PO)",
+    "mechanism": "β-lactam; inhibits bacterial cell wall synthesis via PBP binding; covers gram-positive (staph, strep) and limited gram-negative (E. coli, Proteus, Klebsiella). Long half-life allows once-daily dosing. Replaces moxifloxacin in TCCC 2026 due to better gram-positive coverage of skin/soft-tissue flora and fewer fluoroquinolone-class adverse events (tendinopathy, QT prolongation, neuropsychiatric effects).",
+    "level_context": {
+      "r12": "PRIMARY oral antibiotic for combat wounds in TCCC 2026 (replaces moxifloxacin). Standard CWMP-adjacent prophylaxis when casualty can take PO. Excellent for skin/soft-tissue wound coverage.",
+      "sof": "TCCC 2026 standard. 1g PO once daily. SOF medic carries as PO antibiotic of choice. Use for ambulatory casualty with open wound. If unable to take PO (shock/unconsciousness): switch to ceftriaxone 2g IV/IO/IM.",
+      "ccatt": "Step-down from IV ceftriaxone for transitioning casualty. Once-daily dosing simplifies prolonged transport."
+    },
+    "dual_uses": [
+      {
+        "use": "Open combat wound prophylaxis (TCCC 2026 primary PO)",
+        "note": "1g PO once daily. Cover: skin/soft tissue, common combat wound flora.",
+        "ev": "strong",
+        "levels": [
+          "r12",
+          "sof",
+          "ccatt"
+        ]
+      },
+      {
+        "use": "Skin & soft-tissue infection (cellulitis, impetigo)",
+        "note": "1g PO once daily for 7-10 days. Effective for streptococcal and methicillin-sensitive staphylococcal infections.",
+        "ev": "strong",
+        "levels": [
+          "r12",
+          "sof",
+          "ccatt"
+        ]
+      },
+      {
+        "use": "UTI prophylaxis / treatment (uncomplicated)",
+        "note": "1g PO once daily; alternative for uncomplicated cystitis.",
+        "ev": "moderate",
+        "levels": [
+          "r12",
+          "sof"
+        ]
+      },
+      {
+        "use": "Step-down therapy after IV ceftriaxone",
+        "note": "Transition casualty from IV/IO ceftriaxone to PO cefadroxil once tolerating oral intake. Simplifies prolonged care logistics.",
+        "ev": "strong",
+        "levels": [
+          "sof",
+          "ccatt"
+        ]
+      }
+    ],
+    "shortage_alternatives": [
+      {
+        "name": "Cephalexin (Keflex) 500 mg PO q6h",
+        "note": "TCCC 2026 listed alternative. Q6h dosing less convenient than cefadroxil daily, but same first-gen cephalosporin class with identical spectrum.",
+        "caveat": "More frequent dosing increases missed-dose risk in austere settings"
+      },
+      {
+        "name": "Amoxicillin-Clavulanate (Augmentin) 875/125 mg PO q12h",
+        "note": "Broader gram-negative coverage. Good if mixed flora suspected.",
+        "caveat": "GI upset more common; not TCCC-listed"
+      },
+      {
+        "name": "Doxycycline 100 mg PO q12h",
+        "note": "If cephalosporin allergy. Adequate skin/soft-tissue coverage.",
+        "caveat": "Avoid in pregnancy; photosensitivity; not TCCC-listed for wound prophylaxis"
+      }
+    ],
+    "tags": [
+      "TCCC-2026",
+      "PO",
+      "wound prophylaxis",
+      "open wound",
+      "first-gen cephalosporin"
+    ],
+    "tag_colors": {
+      "TCCC-2026": "green",
+      "PO": "blue",
+      "wound prophylaxis": "orange",
+      "open wound": "red",
+      "first-gen cephalosporin": "purple"
+    },
+    "warnings": [
+      "Cephalosporin allergy",
+      "Cross-reactivity ~1-2% with severe penicillin allergy",
+      "Renal dose adjustment if CrCl <50 mL/min",
+      "C. difficile risk with prolonged use"
+    ],
+    "notes": "ADDED in TCCC 2026-05-01 (Change 25-1). Replaces moxifloxacin as primary PO antibiotic for open combat wounds. Once-daily dosing (1g) chosen for compliance simplicity. Anti-staphylococcal/streptococcal coverage matches typical combat wound flora.",
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 12.b — Antibiotics PO",
+        "tccc_indication": "Open combat wounds & invasive procedures, casualty able to take PO",
+        "tccc_dose": "1 g PO once daily (or cephalexin 500 mg PO q6h as alternative)",
+        "tccc_route": "PO",
+        "tccc_2026_changes": "NEW in TCCC 2026 (Change 25-1). Replaces moxifloxacin.",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "added_in_tccc_2026": true,
+      "source_tier": "A"
+    }
+  },
+  {
+    "id": "suzetrigine",
+    "name": "Suzetrigine (Journavx)",
+    "icon": "💊",
+    "cat": "analgesia",
+    "levels": [
+      "r12",
+      "sof",
+      "ccatt"
+    ],
+    "drug_class": "Selective Nav1.8 sodium channel blocker — non-opioid analgesic",
+    "primary_use": "Acute moderate-to-severe pain in mission-capable casualty (TCCC 2026 CWMP)",
+    "mechanism": "Selective inhibition of Nav1.8 voltage-gated sodium channels expressed in peripheral pain-sensing neurons (DRG). Blocks pain signal propagation without CNS opioid receptor activity. No respiratory depression, no euphoria, no addiction potential. FDA approved Jan 2025 (Vertex Pharmaceuticals). First entirely new mechanism for acute pain in 20+ years.",
+    "level_context": {
+      "r12": "NEW addition to TCCC 2026 CWMP. Carries with APAP and meloxicam for mission-capable casualty. Non-opioid, no respiratory depression — unique advantage in tactical environment where airway/respiratory monitoring limited.",
+      "sof": "CWMP component for casualty staying in the fight. Loading 100 mg PO once, then 50 mg PO q12h. Ideal where dissociation/sedation contraindicated.",
+      "ccatt": "Alternative or adjunct to opioids in transport, especially for casualty already on respiratory support where additional opioid-induced respiratory depression must be avoided."
+    },
+    "dual_uses": [
+      {
+        "use": "TCCC CWMP triplet (APAP + meloxicam + suzetrigine)",
+        "note": "Loading 100 mg PO once (2 × 50 mg), then 50 mg PO q12h. Casualty stays mission-capable.",
+        "ev": "strong",
+        "levels": [
+          "r12",
+          "sof",
+          "ccatt"
+        ]
+      },
+      {
+        "use": "Opioid-sparing in casualties with respiratory compromise",
+        "note": "No respiratory depression — unlike fentanyl/morphine. Useful in TBI, chest trauma, inhalation injury.",
+        "ev": "strong",
+        "levels": [
+          "sof",
+          "ccatt"
+        ]
+      },
+      {
+        "use": "Addiction-risk-aware analgesia",
+        "note": "No abuse potential; appropriate for casualties with history of substance use disorder.",
+        "ev": "strong",
+        "levels": [
+          "sof",
+          "ccatt"
+        ]
+      }
+    ],
+    "shortage_alternatives": [
+      {
+        "name": "Acetaminophen 1000 mg PO q8h + Meloxicam 15 mg PO daily",
+        "note": "Without suzetrigine, fall back to APAP + NSAID combination from CWMP. Less effective for severe pain but still mission-capable analgesia.",
+        "caveat": "May be insufficient for severe pain — escalate to ketamine if non-mission-capable"
+      },
+      {
+        "name": "Ketorolac (Toradol) 30 mg IV/IM/PO",
+        "note": "Stronger NSAID. Single dose typically. Avoid if bleeding/renal concerns.",
+        "caveat": "Bleeding risk in trauma; renal toxicity"
+      }
+    ],
+    "tags": [
+      "TCCC-2026",
+      "CWMP",
+      "non-opioid",
+      "Nav1.8",
+      "novel mechanism",
+      "PO"
+    ],
+    "tag_colors": {
+      "TCCC-2026": "green",
+      "CWMP": "blue",
+      "non-opioid": "green",
+      "Nav1.8": "purple",
+      "novel mechanism": "orange",
+      "PO": "blue"
+    },
+    "warnings": [
+      "Hepatic impairment dose adjustment",
+      "Drug-drug interactions: CYP3A4 substrate",
+      "Limited long-term data (FDA approval Jan 2025)",
+      "Cost: substantially higher than opioids"
+    ],
+    "notes": "ADDED in TCCC 2026-05-01. First-in-class Nav1.8 inhibitor. Major shift in acute pain pharmacology — non-opioid alternative with efficacy approaching low-dose opioids in some studies. CWMP integration reflects DoD priority on opioid alternatives.",
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 11.a.2 — CWMP",
+        "tccc_indication": "Mission-capable casualty, self-administered or co-administered analgesia",
+        "tccc_dose": "100 mg PO once (2 × 50 mg tablets), then 50 mg PO every 12 hours",
+        "tccc_route": "PO",
+        "tccc_2026_changes": "NEW in TCCC 2026 CWMP. First Nav1.8 inhibitor.",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "added_in_tccc_2026": true,
+      "source_tier": "A"
+    }
+  },
+  {
+    "id": "esketamine",
+    "name": "Esketamine (Spravato — IN)",
+    "icon": "💉",
+    "cat": "analgesia",
+    "levels": [
+      "r12",
+      "sof",
+      "ccatt"
+    ],
+    "drug_class": "S-enantiomer of ketamine — NMDA receptor antagonist (intranasal)",
+    "primary_use": "Battlefield analgesia in non-mission-capable casualty (TCCC 2026 alternative to IM/IN ketamine)",
+    "mechanism": "More potent S-enantiomer of ketamine; ~2-4× analgesic potency at NMDA receptors. Intranasal route allows rapid onset (5-10 min) with no IV access needed. Same dissociative properties as racemic ketamine but at lower volumes. FDA approved for treatment-resistant depression (2019); off-label for acute pain.",
+    "level_context": {
+      "r12": "Battlefield analgesia alternative when IM/IN ketamine unavailable. 14-28 mg IN x 1.",
+      "sof": "TCCC 2026 listed analgesic option. Faster onset than IM ketamine for non-mission-capable casualty. Lower volume IN delivery.",
+      "ccatt": "Procedural sedation alternative; may be combined with low-dose IV ketamine for transport."
+    },
+    "dual_uses": [
+      {
+        "use": "Battlefield analgesia (TCCC 2026 alternative)",
+        "note": "14 or 28 mg IN x 1; repeat q30 min PRN to endpoint of pain reduction or nystagmus.",
+        "ev": "strong",
+        "levels": [
+          "r12",
+          "sof",
+          "ccatt"
+        ]
+      },
+      {
+        "use": "Acute PTSD / combat stress (subanesthetic IN)",
+        "note": "Same NMDA mechanism as ketamine; emerging evidence for rapid antidepressant effect.",
+        "ev": "emerging",
+        "levels": [
+          "sof",
+          "ccatt"
+        ]
+      },
+      {
+        "use": "Bridge analgesia until IV access established",
+        "note": "Useful when peripheral access difficult and IM not preferred (e.g., burns).",
+        "ev": "moderate",
+        "levels": [
+          "r12",
+          "sof"
+        ]
+      }
+    ],
+    "shortage_alternatives": [
+      {
+        "name": "Ketamine 100 mg IM OR 50 mg IN",
+        "note": "Racemic ketamine — same TCCC indication. Higher volume but more widely available.",
+        "caveat": "Larger IN volume than esketamine"
+      },
+      {
+        "name": "Ketamine 25 mg IV/IO over 1 min",
+        "note": "If IV/IO access available, faster titration possible.",
+        "caveat": "Requires IV/IO access"
+      }
+    ],
+    "tags": [
+      "TCCC-2026",
+      "IN",
+      "NMDA antagonist",
+      "S-enantiomer",
+      "battlefield analgesia"
+    ],
+    "tag_colors": {
+      "TCCC-2026": "green",
+      "IN": "blue",
+      "NMDA antagonist": "purple",
+      "S-enantiomer": "orange",
+      "battlefield analgesia": "red"
+    },
+    "warnings": [
+      "Same as ketamine: emergence phenomenon, dissociation, BP/HR elevation",
+      "Disarm casualty before administration",
+      "Co-administration with benzodiazepines NOT recommended",
+      "Schedule III controlled substance"
+    ],
+    "notes": "ADDED to TCCC 2026 analgesia options. Intranasal route advantages: rapid onset, no IV access, lower volume than IM. Same disarm requirement and benzodiazepine restriction as racemic ketamine.",
+    "ev_overall": "strong",
+    "sources": [
+      {
+        "id": "TCCC-2026",
+        "name": "Tactical Combat Casualty Care (TCCC) Guidelines",
+        "publisher": "Joint Trauma System / CoTCCC",
+        "date": "2026-05-01",
+        "tier": "A",
+        "url": "https://deployedmedicine.com/content/40",
+        "tccc_section": "TFC Section 11.b — Analgesia (non-mission-capable)",
+        "tccc_indication": "Casualty cannot stay in fight / non-mission capable",
+        "tccc_dose": "14 or 28 mg IN x 1; repeat q30 min PRN",
+        "tccc_route": "IN (intranasal)",
+        "tccc_2026_changes": "NEW analgesic option in TCCC 2026. Alternative to IM/IN/IV ketamine.",
+        "verified_against_tccc_2026": true
+      }
+    ],
+    "validation": {
+      "tccc_2026_validated": true,
+      "tccc_2026_date": "2026-05-01",
+      "added_in_tccc_2026": true,
+      "source_tier": "A"
+    }
   }
-
 ]; // end DB
 
 // ═══════════════════════════════════════════
@@ -10219,6 +11512,34 @@ function cardHTML(d){
 
   const altCards=(d.shortage_alternatives||[]).map(a=>`<div class="alt-card"><div class="alt-name">→ ${a.name}</div><div class="alt-note">${a.note}</div>${a.caveat?`<div class="alt-caveat">⚠ ${a.caveat}</div>`:''}</div>`).join('');
 
+  // SOURCE CITATIONS — TCCC 2026 / JTS / etc.
+  const sources = d.sources||[];
+  const validation = d.validation||{};
+  const sourcesBlock = sources.length ? `<div class="src-box">
+    <div class="src-label">📖 EVIDENCE SOURCES</div>
+    ${sources.map(s=>`<div class="src-item">
+      <div class="src-tier-row">
+        <span class="src-tier src-tier-${s.tier||'X'}">TIER ${s.tier||'?'}</span>
+        <span class="src-name">${s.name||s.id||'Unknown'}</span>
+        <span class="src-date">${s.date||''}</span>
+      </div>
+      ${s.tccc_section?`<div class="src-section">📍 ${s.tccc_section}</div>`:''}
+      ${s.tccc_indication?`<div class="src-line"><strong>Indication:</strong> ${s.tccc_indication}</div>`:''}
+      ${s.tccc_dose?`<div class="src-line"><strong>Dose:</strong> ${s.tccc_dose}</div>`:''}
+      ${s.tccc_route?`<div class="src-line"><strong>Route:</strong> ${s.tccc_route}</div>`:''}
+      ${s.tccc_2026_changes?`<div class="src-changes"><strong>⚡ 2026 Update:</strong> ${s.tccc_2026_changes}</div>`:''}
+      ${s.url?`<a class="src-url" href="${s.url}" target="_blank" rel="noopener">View source ↗</a>`:''}
+    </div>`).join('')}
+  </div>` : (validation.source_tier==='pending_validation' ? `<div class="src-box src-pending">
+    <div class="src-label">⏳ SOURCE VALIDATION PENDING</div>
+    <div class="src-pending-text">This entry has not yet been mapped to a primary clinical source (TCCC / JTS CPG / ACLS / ATLS). Use with clinical judgment and verify against your unit's current guidelines.</div>
+  </div>` : '');
+
+  // Validation badge (TCCC 2026)
+  const valBadge = validation.tccc_2026_validated ?
+    `<span class="val-badge val-tccc">✓ TCCC 2026</span>` :
+    (validation.added_in_tccc_2026 ? `<span class="val-badge val-new">★ NEW 2026</span>` : '');
+
   // Determine card level class
   const lvlClass = d.levels.length>1?'level-all':('level-'+d.levels[0]);
 
@@ -10231,6 +11552,7 @@ function cardHTML(d){
       <div class="card-primary">${d.primary_use}</div>
     </div>
     <div class="card-right">
+      ${valBadge}
       <span class="ev-badge ${EVC[d.ev_overall]}">${EVL[d.ev_overall]}</span>
       <span style="font-size:9px;color:var(--text3);">${duals.length} dual use${duals.length!==1?'s':''}</span>
     </div>
@@ -10240,6 +11562,7 @@ function cardHTML(d){
 
   <div class="card-detail">
     ${ctxBlocks}
+    ${sourcesBlock}
     <div class="mech-box"><div class="mech-label">⚙ MECHANISM OF ACTION</div><div class="mech-text">${d.mechanism}</div></div>
     ${duals.length?`<div class="det-block"><div class="det-label">🔀 DUAL / ALTERNATIVE USES (MECHANISM-DERIVED)</div><div class="det-text"><ul style="padding-left:13px;">${allDuals}</ul></div></div>`:''}
     ${altCards?`<div style="margin-bottom:8px;"><div class="shortage-title">⚠ SHORTAGE ALTERNATIVES</div>${altCards}</div>`:''}
@@ -10435,5 +11758,343 @@ function closeMobileAll(){
 buildSidebar();
 renderAll();
 </script>
+
+<!-- ═══════════════════════════════════════════
+     DECISION ENGINE MODE — TCCC 2026 grounded
+     ═══════════════════════════════════════════ -->
+<button class="de-toggle" id="deToggle" onclick="toggleDecisionEngine()">
+  🎯 DECISION SUPPORT
+</button>
+
+<div class="de-overlay" id="deOverlay">
+  <div class="de-panel">
+    <div class="de-header">
+      <div>
+        <div class="de-title">🎯 DECISION SUPPORT MODE</div>
+        <div class="de-subtitle">TCCC 2026 / JTS-grounded action sequence generator</div>
+      </div>
+      <button class="de-close" onclick="toggleDecisionEngine()">✕ CLOSE</button>
+    </div>
+
+    <div class="de-section">
+      <div class="de-section-label">▸ Casualty Profile</div>
+      <div class="de-grid">
+        <input class="de-input" id="dePtAge" type="number" placeholder="Age (yr)" min="1" max="120">
+        <select class="de-select" id="dePtSex">
+          <option value="">Sex</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+        <input class="de-input" id="dePtWt" type="number" placeholder="Weight (kg)" min="1" max="200">
+        <input class="de-input" id="dePtSBP" type="number" placeholder="SBP (mmHg)" min="0" max="300">
+        <input class="de-input" id="dePtHR" type="number" placeholder="HR (bpm)" min="0" max="300">
+        <input class="de-input" id="dePtSpO2" type="number" placeholder="SpO2 (%)" min="0" max="100">
+        <input class="de-input" id="dePtGCS" type="number" placeholder="GCS (3-15)" min="3" max="15">
+        <input class="de-input" id="dePtRR" type="number" placeholder="RR (per min)" min="0" max="60">
+      </div>
+    </div>
+
+    <div class="de-section">
+      <div class="de-section-label">▸ Mechanism of Injury</div>
+      <div class="de-radio-grp" id="deMech">
+        <div class="de-radio" data-val="gsw">GSW / Penetrating</div>
+        <div class="de-radio" data-val="blast">Blast / IED</div>
+        <div class="de-radio" data-val="blunt">Blunt / Crush</div>
+        <div class="de-radio" data-val="burn">Burn / Inhalation</div>
+        <div class="de-radio" data-val="cbrn">CBRN / Toxin</div>
+        <div class="de-radio" data-val="environmental">Environmental</div>
+      </div>
+    </div>
+
+    <div class="de-section">
+      <div class="de-section-label">▸ Suspected Injuries (select all)</div>
+      <div class="de-checks" id="deInjuries">
+        <label class="de-check"><input type="checkbox" data-val="hemorrhage_extremity"> Extremity hemorrhage</label>
+        <label class="de-check"><input type="checkbox" data-val="hemorrhage_torso"> Torso bleeding</label>
+        <label class="de-check"><input type="checkbox" data-val="hemorrhage_junctional"> Junctional bleeding</label>
+        <label class="de-check"><input type="checkbox" data-val="amputation"> Amputation</label>
+        <label class="de-check"><input type="checkbox" data-val="tbi"> TBI / altered MS</label>
+        <label class="de-check"><input type="checkbox" data-val="penetrating_eye"> Penetrating eye trauma</label>
+        <label class="de-check"><input type="checkbox" data-val="airway_compromise"> Airway compromise</label>
+        <label class="de-check"><input type="checkbox" data-val="tension_pneumo"> Tension pneumothorax</label>
+        <label class="de-check"><input type="checkbox" data-val="open_wound"> Open wound</label>
+        <label class="de-check"><input type="checkbox" data-val="pelvic_fx"> Pelvic fracture</label>
+        <label class="de-check"><input type="checkbox" data-val="burn_major"> Burn >20% TBSA</label>
+        <label class="de-check"><input type="checkbox" data-val="hypothermia"> Hypothermia risk</label>
+      </div>
+    </div>
+
+    <div class="de-section">
+      <div class="de-section-label">▸ Echelon &amp; Evacuation</div>
+      <div class="de-radio-grp" id="deEchelon" style="margin-bottom:8px">
+        <div class="de-radio" data-val="cuf">Care Under Fire</div>
+        <div class="de-radio" data-val="tfc">Tactical Field Care</div>
+        <div class="de-radio" data-val="tacevac">TACEVAC</div>
+        <div class="de-radio" data-val="pcc">PCC / PFC</div>
+      </div>
+      <div class="de-radio-grp" id="deEvac">
+        <div class="de-radio" data-val="0.5">≤30 min</div>
+        <div class="de-radio" data-val="2">≤2 hr</div>
+        <div class="de-radio" data-val="6">≤6 hr</div>
+        <div class="de-radio" data-val="24">PFC ≥24 hr</div>
+      </div>
+    </div>
+
+    <div class="de-section">
+      <div class="de-section-label">▸ Available Resources (kit)</div>
+      <div class="de-checks" id="deResources">
+        <label class="de-check"><input type="checkbox" data-val="tourniquet" checked> Tourniquet</label>
+        <label class="de-check"><input type="checkbox" data-val="combat_gauze" checked> Combat Gauze</label>
+        <label class="de-check"><input type="checkbox" data-val="txa" checked> TXA</label>
+        <label class="de-check"><input type="checkbox" data-val="ketamine" checked> Ketamine</label>
+        <label class="de-check"><input type="checkbox" data-val="cwmp" checked> CWMP (APAP/meloxicam/suzetrigine)</label>
+        <label class="de-check"><input type="checkbox" data-val="ceftriaxone" checked> Ceftriaxone IV/IM</label>
+        <label class="de-check"><input type="checkbox" data-val="cefadroxil" checked> Cefadroxil PO</label>
+        <label class="de-check"><input type="checkbox" data-val="ondansetron" checked> Ondansetron</label>
+        <label class="de-check"><input type="checkbox" data-val="hypertonic"> Hypertonic saline</label>
+        <label class="de-check"><input type="checkbox" data-val="whole_blood"> Whole blood</label>
+        <label class="de-check"><input type="checkbox" data-val="calcium"> Calcium</label>
+        <label class="de-check"><input type="checkbox" data-val="iv_access"> IV/IO access</label>
+        <label class="de-check"><input type="checkbox" data-val="oxygen"> Supplemental O2</label>
+        <label class="de-check"><input type="checkbox" data-val="bvm"> 1000 mL BVM</label>
+        <label class="de-check"><input type="checkbox" data-val="capnography"> Capnography</label>
+        <label class="de-check"><input type="checkbox" data-val="warming"> Warming/hypothermia kit</label>
+      </div>
+    </div>
+
+    <button class="de-action-btn" onclick="generateDecisionPlan()">
+      ▶ GENERATE TCCC 2026 ACTION SEQUENCE
+    </button>
+
+    <div class="de-output" id="deOutput">
+      <div class="de-output-empty">Fill in casualty profile, select mechanism / injuries / echelon / evacuation timeline / available resources, then press GENERATE.</div>
+    </div>
+
+    <div class="de-disclaimer">
+      <strong>⚠ DISCLAIMER:</strong> Decision Support generates suggestions grounded in TCCC Guidelines 01 May 2026 and other published standards. This is a clinical decision support tool — not a substitute for trained provider judgment. Always verify against current unit SOPs and the casualty's actual clinical status. Local medical direction / authorized provider scope governs all interventions.
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// DECISION ENGINE — TCCC 2026 grounded logic
+// ═══════════════════════════════════════════
+function toggleDecisionEngine(){
+  const ov=document.getElementById('deOverlay');
+  const btn=document.getElementById('deToggle');
+  if(ov.classList.contains('open')){ov.classList.remove('open');btn.classList.remove('active');btn.textContent='🎯 DECISION SUPPORT';}
+  else{ov.classList.add('open');btn.classList.add('active');btn.textContent='✕ CLOSE PANEL';}
+}
+
+// Radio toggle behavior
+document.addEventListener('click',function(e){
+  const r=e.target.closest('.de-radio');
+  if(r&&r.parentElement.id&&r.parentElement.id.startsWith('de')){
+    [...r.parentElement.children].forEach(c=>c.classList.remove('selected'));
+    r.classList.add('selected');
+  }
+});
+// Checkbox visual sync
+document.addEventListener('change',function(e){
+  if(e.target.type==='checkbox'&&e.target.closest('.de-check')){
+    e.target.closest('.de-check').classList.toggle('checked',e.target.checked);
+  }
+});
+
+function readDecisionInput(){
+  const $=id=>document.getElementById(id);
+  const radio=grp=>{const s=document.querySelector(`#${grp} .de-radio.selected`);return s?s.dataset.val:null;};
+  const checks=grp=>[...document.querySelectorAll(`#${grp} input:checked`)].map(c=>c.dataset.val);
+  return {
+    age:parseInt($('dePtAge').value)||null,
+    sex:$('dePtSex').value||null,
+    wt:parseFloat($('dePtWt').value)||null,
+    sbp:parseInt($('dePtSBP').value)||null,
+    hr:parseInt($('dePtHR').value)||null,
+    spo2:parseInt($('dePtSpO2').value)||null,
+    gcs:parseInt($('dePtGCS').value)||null,
+    rr:parseInt($('dePtRR').value)||null,
+    mech:radio('deMech'),
+    injuries:checks('deInjuries'),
+    echelon:radio('deEchelon'),
+    evacHr:parseFloat(radio('deEvac'))||null,
+    resources:checks('deResources'),
+  };
+}
+
+function generateDecisionPlan(){
+  const I=readDecisionInput();
+  const recs=[];
+  const has=r=>I.resources.includes(r);
+  const inj=k=>I.injuries.includes(k);
+
+  // === MASSIVE HEMORRHAGE (TCCC 2026 Section 3) ===
+  if(inj('hemorrhage_extremity')||inj('amputation')){
+    recs.push({time:'IMMEDIATE',action:'Apply CoTCCC limb tourniquet — directly to skin, 2-3 inches above bleeding site',
+      detail:'If bleeding not controlled with first tourniquet, apply second side-by-side. Mark TIME on tourniquet and TCCC Casualty Card.',
+      cite:'TCCC 2026, TFC §3.a — Massive Hemorrhage',
+      class:has('tourniquet')?'':'de-rec-warning',
+      warn:!has('tourniquet')?'⚠ NO TOURNIQUET in kit — improvise with windlass-tightened cloth ≥1" wide':null});
+  }
+  if(inj('hemorrhage_torso')||inj('hemorrhage_junctional')){
+    recs.push({time:'IMMEDIATE',action:'Combat Gauze with ≥3 min direct pressure',
+      detail:'CoTCCC primary hemostatic dressing. Alternatives: Celox, ChitoGauze, XStat (deep narrow tracts), iTClamp (re-approximable head/neck — NOT within 1cm orbit).',
+      cite:'TCCC 2026, TFC §3.b — Hemostatic Dressings',
+      class:has('combat_gauze')?'':'de-rec-warning',
+      warn:!has('combat_gauze')?'⚠ NO Combat Gauze in kit — use plain gauze with sustained direct pressure':null});
+  }
+  if(inj('pelvic_fx')||(I.mech==='blast'&&inj('amputation'))){
+    recs.push({time:'IMMEDIATE',action:'Apply pelvic binder',
+      detail:'Indications: severe blunt/blast + pelvic pain, major lower limb amputation, exam findings of pelvic fx, unconscious, or shock.',
+      cite:'TCCC 2026, TFC §6.a.1 — Pelvic Binder'});
+  }
+
+  // === AIRWAY (TCCC 2026 Section 4 — UPDATED 2026) ===
+  if(inj('airway_compromise')){
+    if(I.gcs!==null&&I.gcs<=8){
+      recs.push({time:'NEXT 5 MIN',action:'Place unconscious casualty in RECOVERY POSITION',
+        detail:'TCCC 2026 NEW: recovery position is first-line for unconscious casualty without obstruction. Head tilted back, chin away from chest.',
+        cite:'TCCC 2026, TFC §4.d — Airway (NEW 2026)'});
+    }
+    recs.push({time:'IF AIRWAY UNMANAGEABLE',action:'Surgical cricothyroidotomy (bougie-aided open or standard open)',
+      detail:'Flanged cuffed cannula <10 mm OD, 6-7 mm ID, 5-8 cm intratracheal length. Use lidocaine if conscious. Verify with continuous EtCO2 capnography.',
+      cite:'TCCC 2026, TFC §4.f — Surgical Airway',
+      class:!has('capnography')?'de-rec-warning':'',
+      warn:!has('capnography')?'⚠ NO capnography in kit — TCCC 2026 mandates EtCO2 verification post-cric':null});
+  }
+
+  // === TENSION PNEUMO (TCCC 2026 Section 5) ===
+  if(inj('tension_pneumo')||(I.mech==='blast'&&I.spo2!==null&&I.spo2<90)){
+    recs.push({time:'IMMEDIATE',action:'Needle Decompression (NDC) — 14 or 10 ga, 3.25"',
+      detail:'5th ICS anterior axillary line OR 2nd ICS mid-clavicular line. Insert perpendicular, just over top of lower rib, all the way to hub, hold 5-10 sec. If first NDC fails, try other site with new needle. Bilateral NDC if torso trauma + traumatic cardiac arrest.',
+      cite:'TCCC 2026, TFC §5.a — Tension Pneumothorax'});
+  }
+
+  // === TBI (TCCC 2026 Section 8 — UPDATED 2026) ===
+  if(inj('tbi')||(I.gcs!==null&&I.gcs<13)){
+    recs.push({time:'CONTINUOUS',action:'Target SpO2 ≥92%, SBP >100 mmHg',
+      detail:'TCCC 2026: moderate/severe TBI = unable to follow simple commands beyond 10 min post-injury. Evacuate to neurosurgical capability — outcomes improved with surgical intervention within 5 hr of injury.',
+      cite:'TCCC 2026, TFC §8.b — TBI Targets'});
+    if(I.sbp!==null&&I.sbp<100&&!inj('hemorrhage_extremity')&&!inj('hemorrhage_torso')){
+      recs.push({time:'NEXT 10 MIN',action:'Plasma 1-2 units (TBI without hemorrhage)',
+        detail:'TCCC 2026: if no hemorrhagic shock, give 1-2 units plasma for TBI hypotension. Plasma NOT indicated for mild TBI.',
+        cite:'TCCC 2026, TFC §8.b.2 — TBI Resuscitation',
+        class:!has('whole_blood')?'de-rec-warning':''});
+    }
+    // Herniation signs — pupil asymmetry approximated by gcs<8 + mechanism
+    if(I.gcs!==null&&I.gcs<=8){
+      recs.push({time:'IF HERNIATION SIGNS',action:'Hypertonic saline 250 mL of 3-5% OR 30 mL of 23.4% IV/IO over ≥10 min',
+        detail:'For asymmetric/fixed/dilated pupil(s) or posturing. Saline flush after. Repeat in 20 min if no response (max 2 doses). Monitor IV/IO for extravasation. NOT prophylactic. NOT a resuscitative fluid.',
+        cite:'TCCC 2026, TFC §8.d — Herniation Treatment',
+        class:!has('hypertonic')?'de-rec-warning':''});
+    }
+  }
+
+  // === TXA (TCCC 2026 Section 6.d — MAJOR 2026 UPDATE) ===
+  const txaTrauma = inj('hemorrhage_torso')||inj('amputation')||(I.sbp!==null&&I.sbp<90);
+  const txaTBI = inj('tbi')||(I.gcs!==null&&I.gcs<13&&(I.mech==='blast'||I.mech==='blunt'));
+  if(txaTrauma||txaTBI){
+    recs.push({time:'NEXT 10 MIN (≤3 hr from injury)',action:'TXA 2 g via slow IV/IO push',
+      detail:'TCCC 2026 UPDATE: single 2g push (replaces 1g+1g infusion). Indications: likely transfusion need OR significant TBI/altered MS from blast/blunt. NOT later than 3 hr after injury.',
+      cite:'TCCC 2026, TFC §6.d — TXA (NEW DOSING 2026)',
+      class:!has('txa')?'de-rec-warning':''});
+  }
+
+  // === FLUID RESUSCITATION (TCCC 2026 Section 6.e) ===
+  if((I.sbp!==null&&I.sbp<90)||inj('hemorrhage_torso')||inj('amputation')){
+    recs.push({time:'NEXT 10-30 MIN',action:'Resuscitation hierarchy: Cold-stored LTOWB → fresh LTOWB → 1:1:1 → 1:1 → plasma/RBC alone',
+      detail:'Reassess after each unit. End points: palpable radial pulse, improved MS, or SBP 100. Use battery warmer (38°C, ≤150 mL/min). Reassess for shock recurrence frequently.',
+      cite:'TCCC 2026, TFC §6.e — Fluid Resuscitation',
+      class:!has('whole_blood')?'de-rec-warning':''});
+    recs.push({time:'AFTER FIRST UNIT',action:'Calcium 1 g IV/IO (30 mL of 10% Ca-gluconate OR 10 mL of 10% Ca-chloride)',
+      detail:'Per TCCC 2026: administer after first transfused product. Critical for citrate toxicity prevention.',
+      cite:'TCCC 2026, TFC §6.e.4.8 — Calcium with Transfusion',
+      class:!has('calcium')?'de-rec-warning':''});
+  }
+
+  // === HYPOTHERMIA (TCCC 2026 Section 7) ===
+  if(inj('hypothermia')||I.evacHr>=2||inj('burn_major')||(I.sbp!==null&&I.sbp<90)){
+    recs.push({time:'EARLY & CONTINUOUS',action:'Aggressive hypothermia prevention',
+      detail:'Insulate from cold ground; replace wet clothing; active heating blanket (anterior torso + axillae, NOT direct skin); enclosure bag; insulated hooded sleeping bag for prolonged. Battery-powered fluid warmer 38°C up to 150 mL/min.',
+      cite:'TCCC 2026, TFC §7 — Hypothermia Prevention',
+      class:!has('warming')?'de-rec-warning':''});
+  }
+
+  // === EYE TRAUMA (TCCC 2026 Section 9) ===
+  if(inj('penetrating_eye')){
+    recs.push({time:'NEXT 5 MIN',action:'Rigid eye shield (NOT pressure patch) + antibiotic',
+      detail:'Document rapid visual acuity. Ceftriaxone 2 g IV/IM OR cefadroxil 1 g PO ASAP.',
+      cite:'TCCC 2026, TFC §9 — Penetrating Eye Trauma',
+      class:(!has('ceftriaxone')&&!has('cefadroxil'))?'de-rec-warning':''});
+  }
+
+  // === ANALGESIA (TCCC 2026 Section 11 — CWMP UPDATED) ===
+  if(I.gcs===null||I.gcs>=14){
+    if(has('cwmp')){
+      recs.push({time:'IF MISSION-CAPABLE',action:'CWMP: APAP 1000-1300 mg PO q8h + Meloxicam 15 mg PO daily + Suzetrigine 100 mg load then 50 mg q12h',
+        detail:'TCCC 2026 NEW: Suzetrigine added (Nav1.8 inhibitor, non-opioid). Self-administered or co-administered.',
+        cite:'TCCC 2026, TFC §11.a — CWMP (NEW 2026)'});
+    }
+  } else {
+    if(has('ketamine')){
+      recs.push({time:'IF NON-MISSION-CAPABLE',action:'Ketamine 100 mg IM OR 50 mg IN OR 25 mg (0.2-0.3 mg/kg) IV/IO over 1 min',
+        detail:'TCCC 2026 alternatives: Esketamine 14 or 28 mg IN x 1. Repeat q30 min PRN. Endpoints: pain reduction OR nystagmus. DISARM casualty. NO benzodiazepines co-administered. If respirations reduce: sniffing position → ventilatory support.',
+        cite:'TCCC 2026, TFC §11.b — Analgesia (non-mission-capable)'});
+    }
+    if(has('ondansetron')){
+      recs.push({time:'PRN',action:'Ondansetron 4 mg ODT/IV/IO/IM q8h for nausea/vomiting',
+        detail:'ODT route convenient for field use.',
+        cite:'TCCC 2026, TFC §11.c.8 — Anti-emetic'});
+    }
+  }
+
+  // === ANTIBIOTICS (TCCC 2026 Section 12 — MAJOR 2026 UPDATE) ===
+  if(inj('open_wound')||inj('penetrating_eye')||inj('amputation')||inj('hemorrhage_torso')){
+    if(I.gcs!==null&&I.gcs<13){
+      recs.push({time:'NEXT 30 MIN',action:'Ceftriaxone 2 g IV/IO/IM once daily',
+        detail:'TCCC 2026: if unable to take PO (shock/unconsciousness). REPLACED ertapenem in Change 25-1.',
+        cite:'TCCC 2026, TFC §12.c — Antibiotics IV (NEW 2026)',
+        class:!has('ceftriaxone')?'de-rec-warning':''});
+    } else {
+      recs.push({time:'NEXT 30 MIN',action:'Cefadroxil 1 g PO once daily (or Cephalexin 500 mg PO q6h)',
+        detail:'TCCC 2026: REPLACED moxifloxacin (Change 25-1). For ambulatory casualty able to take PO.',
+        cite:'TCCC 2026, TFC §12.b — Antibiotics PO (NEW 2026)',
+        class:!has('cefadroxil')?'de-rec-warning':''});
+    }
+  }
+
+  // === BURNS (TCCC 2026 Section 15) ===
+  if(inj('burn_major')){
+    recs.push({time:'NEXT 30 MIN',action:'USAISR Rule of Ten: %TBSA × 10 mL/hr LR/NS (40-80 kg). +100 mL/hr per 10 kg above 80 kg',
+      detail:'If Hextend used, max 1000 mL then switch to LR/NS. Hemorrhagic shock takes precedence. Cover with dry sterile dressings. Heat-Reflective Shell for >20% TBSA.',
+      cite:'TCCC 2026, TFC §15.e — Burn Resuscitation'});
+  }
+
+  // === PFC TRANSITION (Evac >4 hr) ===
+  if(I.evacHr&&I.evacHr>=4){
+    recs.push({time:`PFC (Evac ${I.evacHr}+ hr)`,action:'Transition to Prolonged Casualty Care protocols',
+      detail:'Reassess vitals q15-30 min initially, then q1h. Tourniquet conversion attempts ≤2 hr (CMC/CPP only beyond). Monitor for coagulopathy, infection, electrolyte derangement. Consider second TXA dose at 8 hr if continued bleeding (per JTS PFC literature, off TCCC strict label).',
+      cite:'JTS Prolonged Casualty Care Guidelines + TCCC 2026 §6.a.3',
+      class:'de-rec-pfc'});
+  }
+
+  // === RENDER ===
+  const out=document.getElementById('deOutput');
+  if(!recs.length){
+    out.innerHTML='<div class="de-output-empty">No actions triggered by current inputs. Please complete: mechanism of injury, suspected injuries (at least one), and echelon. Then press GENERATE.</div>';
+    return;
+  }
+  out.innerHTML=`<div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:10px;letter-spacing:0.3px;">▶ TCCC 2026 ACTION SEQUENCE — ${recs.length} RECOMMENDATIONS</div>`+
+    recs.map(r=>`<div class="de-rec ${r.class||''}">
+      <div class="de-rec-time">${r.time}</div>
+      <div class="de-rec-action">${r.action}</div>
+      <div class="de-rec-detail">${r.detail}</div>
+      ${r.warn?`<div class="de-rec-detail" style="color:var(--red);font-weight:600;margin-top:4px;">${r.warn}</div>`:''}
+      <div class="de-rec-cite">📖 ${r.cite}</div>
+    </div>`).join('');
+}
+</script>
+
 </body>
 </html>
