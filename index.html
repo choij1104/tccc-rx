@@ -215,6 +215,12 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 @media (min-width: 769px) {
   .mobile-menu-btn,.mobile-ai-btn,.mobile-overlay,.mobile-close{display:none!important}
 }
+/* ── TOUCH TARGETS + iOS ZOOM FIX (touch devices only; desktop layout untouched) ── */
+@media (pointer:coarse) {
+  .mode-btn,.stat-box,.de-radio,.de-check,.search-clear,.btn,.de-toggle,.de-action-btn,.mobile-menu-btn,.mobile-ai-btn{min-height:44px}
+  .mobile-close{min-width:44px;min-height:44px}
+  .search-input,.de-input,.de-select{font-size:16px}
+}
 
 /* === SOURCE CITATIONS (TCCC 2026 / JTS hierarchy) === */
 .src-box{background:linear-gradient(135deg,#e8f5ee 0%,#f0f9f3 100%);border:1px solid #1b6e3a;border-left:4px solid #1b6e3a;border-radius:6px;padding:9px 11px;margin-bottom:10px;font-size:11px}
@@ -13064,7 +13070,8 @@ function doSearch(){
   }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
 
   const results=scored.map(x=>x.d);
-  renderCards(results,`${results.length} result${results.length!==1?'s':''} — "${q}"`);
+  const qSafe=q.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  renderCards(results,`${results.length} result${results.length!==1?'s':''} — "${qSafe}"`);
 }
 function renderAll(){
   let pool=DB;
